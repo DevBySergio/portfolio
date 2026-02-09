@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens ---------- */
+:root {
+  --color-brand: #ff5a1f;
+
+  --color-bg-light: #f8f8f8;
+  --color-bg-dark: #0f0f0f;
+
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #1a1a1a;
+
+  --color-text-light: #1a1a1a;
+  --color-text-dark: #e5e5e5;
+  --color-text-muted: #9ca3af;
+}
+
+/* ---------- Base styles ---------- */
+html {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+html.dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}

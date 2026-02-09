@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import DarkModeToggle from '../components/DarkModeToggle';
+
+const { title = 'Dev by Sergio' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <header
+      class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center"
+    >
+      <span class="text-xl font-bold tracking-tight">
+        DEV<span class="text-(--color-brand)">BY</span>SERGIO
+      </span>
+
+      <div class="flex items-center gap-6">
+        <nav class="flex gap-6 text-sm text-(--color-text-muted)">
+          <a href="/" class="hover:text-(--color-brand)">Home</a>
+          <a href="/projects" class="hover:text-(--color-brand)">
+            Projects
+          </a>
+          <a href="/about" class="hover:text-(--color-brand)">
+            About
+          </a>
+        </nav>
+
+        <!-- React island -->
+        <DarkModeToggle client:load />
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+      <slot />
+    </main>
+
+    <footer
+      class="max-w-7xl mx-auto px-6 py-10 text-sm text-(--color-text-muted)"
+    >
+      © {new Date().getFullYear()} Sergio · Built with Astro
+    </footer>
+  </body>
+</html>

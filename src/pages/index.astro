@@ -1,17 +1,144 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro - Portfolio DevBySergio</h1>
-	</body>
-</html>
+<BaseLayout title="Sergio · Full-Stack Software Engineer">
+  <!-- ================= HERO ================= -->
+  <section class="py-28 flex flex-col gap-8">
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+      Full-Stack<br />
+      <span class="text-(--color-brand)">
+        Software Engineer
+      </span>
+    </h1>
+
+    <p class="max-w-2xl text-lg text-(--color-text-muted)">
+      I build real-world web applications and developer tools,
+      focused on scalability, performance and developer experience.
+    </p>
+
+    <div class="flex gap-4 mt-4">
+      <a
+        href="/projects"
+        class="px-6 py-3 rounded font-medium
+               bg-(--color-brand) text-white
+               hover:opacity-90 transition"
+      >
+        View Projects
+      </a>
+
+      <a
+        href="/projects#extensions"
+        class="px-6 py-3 rounded font-medium
+               border border-(--color-text-muted)
+               hover:border-(--color-brand)
+               transition"
+      >
+        VS Code Extensions
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= VALUE PROPOSITION ================= -->
+  <section class="py-20 border-t border-neutral-200 dark:border-neutral-800">
+    <div class="grid md:grid-cols-3 gap-10">
+      <div>
+        <h3 class="font-semibold mb-2">Product mindset</h3>
+        <p class="text-sm text-(--color-text-muted)">
+          Experience building solutions for real clients,
+          focusing on business impact and usability.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Developer tooling</h3>
+        <p class="text-sm text-(--color-text-muted)">
+          VS Code extensions and internal tools that improve
+          productivity and developer workflows.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Scalable architecture</h3>
+        <p class="text-sm text-(--color-text-muted)">
+          Clean code, maintainable systems and pragmatic
+          engineering decisions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PROJECTS ================= -->
+  <section class="py-20">
+    <h2 class="text-2xl font-semibold mb-8">
+      Featured Projects
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <article
+        class="p-6 rounded
+               bg-(--color-surface-light)
+               dark:bg-(--color-surface-dark)"
+      >
+        <h3 class="text-xl font-semibold mb-2">
+          Client Project A
+        </h3>
+        <p class="text-sm text-(--color-text-muted) mb-4">
+          Full-stack web application developed for a real client,
+          focused on performance and scalability.
+        </p>
+        <a
+          href="/projects/client-project-a"
+          class="text-sm font-medium
+                 text-(--color-brand)
+                 hover:underline"
+        >
+          View project →
+        </a>
+      </article>
+
+      <article
+        class="p-6 rounded
+               bg-(--color-surface-light)
+               dark:bg-(--color-surface-dark)"
+      >
+        <h3 class="text-xl font-semibold mb-2">
+          Client Project B
+        </h3>
+        <p class="text-sm text-(--color-text-muted) mb-4">
+          Scalable solution designed to handle complex business logic
+          and real-world constraints.
+        </p>
+        <a
+          href="/projects/client-project-b"
+          class="text-sm font-medium
+                 text-(--color-brand)
+                 hover:underline"
+        >
+          View project →
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= TOOLING PREVIEW ================= -->
+  <section class="py-20 border-t border-neutral-200 dark:border-neutral-800">
+    <h2 class="text-2xl font-semibold mb-4">
+      Developer Tooling
+    </h2>
+
+    <p class="max-w-xl text-(--color-text-muted) mb-6">
+      A collection of VS Code extensions focused on solving
+      real development problems and improving daily workflows.
+    </p>
+
+    <a
+      href="/projects#extensions"
+      class="inline-block text-sm font-medium
+             text-(--color-brand)
+             hover:underline"
+    >
+      Explore extensions →
+    </a>
+  </section>
+</BaseLayout>
