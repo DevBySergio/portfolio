@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects';
+
+const featured = projects.filter(p => p.type === 'featured');
 ---
 
 <BaseLayout title="DbS · Software Developer">
@@ -68,58 +71,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- ================= FEATURED PROJECTS ================= -->
-  <section class="py-20">
-    <h2 class="text-2xl font-semibold mb-8">
-      Featured Projects
-    </h2>
+  <!-- ================= FEATURED PROJECTS (New) ================= -->
+   <section>
+  <h2 class="text-2xl font-semibold mb-8">
+    Featured Projects
+  </h2>
 
-    <div class="grid md:grid-cols-2 gap-8">
+  <div class="grid md:grid-cols-2 gap-8">
+    {featured.map(project => (
       <article
         class="p-6 rounded
                bg-(--color-surface-light)
                dark:bg-(--color-surface-dark)"
       >
         <h3 class="text-xl font-semibold mb-2">
-          Client Project A
+          {project.title}
         </h3>
         <p class="text-sm text-(--color-text-muted) mb-4">
-          Full-stack web application developed for a real client,
-          focused on performance and scalability.
+          {project.summary}
         </p>
         <a
-          href="/projects/client-project-a"
-          class="text-sm font-medium
-                 text-(--color-brand)
-                 hover:underline"
+          href={`/projects/${project.id}`}
+          class="text-sm font-medium text-(--color-brand)"
         >
           View project →
         </a>
       </article>
-
-      <article
-        class="p-6 rounded
-               bg-(--color-surface-light)
-               dark:bg-(--color-surface-dark)"
-      >
-        <h3 class="text-xl font-semibold mb-2">
-          Client Project B
-        </h3>
-        <p class="text-sm text-(--color-text-muted) mb-4">
-          Scalable solution designed to handle complex business logic
-          and real-world constraints.
-        </p>
-        <a
-          href="/projects/client-project-b"
-          class="text-sm font-medium
-                 text-(--color-brand)
-                 hover:underline"
-        >
-          View project →
-        </a>
-      </article>
-    </div>
-  </section>
+    ))}
+  </div>
+</section>
 
   <!-- ================= TOOLING PREVIEW ================= -->
   <section class="py-20 border-t border-neutral-200 dark:border-neutral-800">

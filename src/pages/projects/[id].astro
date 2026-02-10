@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/projects';
+
+// 1. Generar rutas estáticas
+export function getStaticPaths() {
+  return projects.map(project => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+// 2. Proyecto actual
+const { project } = Astro.props;
+
+// 3. SEO dinámico por proyecto
+const seo = {
+  title: project.seo?.title ?? project.title,
+  description: project.seo?.description ?? project.summary,
+  image: project.seo?.image ?? project.image,
+  url: `https://tudominio.com/projects/${project.id}`,
+};
+---
+
+<BaseLayout title={project.title} seo={seo}>
+  <!-- Hero -->
+  <section class="py-20 max-w-3xl">
+    <h1 class="text-4xl font-semibold mb-6">
+      {project.title}
+    </h1>
+
+    <p class="text-lg text-(--color-text-muted)">
+      {project.summary}
+    </p>
+  </section>
+
+  <!-- Image -->
+  <section class="pb-20">
+    <img
+      src={project.image}
+      alt=""
+      class="rounded w-full max-w-4xl"
+    />
+  </section>
+
+  <!-- Content -->
+  <section class="grid md:grid-cols-3 gap-12 pb-32">
+    <!-- Main -->
+    <div class="md:col-span-2 space-y-8">
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">
+          Project Overview
+        </h2>
+        <p class="text-(--color-text-muted)">
+          {project.description}
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-3">
+          Technical Approach
+        </h2>
+        <p class="text-(--color-text-muted)">
+          This project was designed with a strong focus on maintainability,
+          performance, and real-world constraints, following best practices
+          for scalable web applications.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="space-y-6">
+      <div>
+        <h3 class="text-sm font-semibold uppercase mb-2">
+          Stack
+        </h3>
+        <ul class="flex flex-wrap gap-2">
+          {project.stack.map(tech => (
+            <li
+              class="
+                text-xs px-2 py-1 rounded
+                bg-(--color-surface-muted)
+              "
+            >
+              {tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {project.client && (
+        <div>
+          <h3 class="text-sm font-semibold uppercase mb-1">
+            Client
+          </h3>
+          <p class="text-sm text-(--color-text-muted)">
+            {project.client}
+          </p>
+        </div>
+      )}
+
+      {project.year && (
+        <div>
+          <h3 class="text-sm font-semibold uppercase mb-1">
+            Year
+          </h3>
+          <p class="text-sm text-(--color-text-muted)">
+            {project.year}
+          </p>
+        </div>
+      )}
+
+      {project.url && (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noreferrer"
+          class="
+            inline-block mt-4
+            text-sm font-medium
+            text-(--color-brand)
+          "
+        >
+          Visit project →
+        </a>
+      )}
+
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noreferrer"
+          class="
+            block text-sm
+            text-(--color-brand)
+          "
+        >
+          View source →
+        </a>
+      )}
+    </aside>
+  </section>
+</BaseLayout>

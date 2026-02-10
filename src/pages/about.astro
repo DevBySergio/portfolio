@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seo = {
+  title: 'About – Sergio | Full-stack Developer',
+  description:
+    'Full-stack developer with experience in real-world projects, developer tooling and data-driven applications. Focused on scalable and maintainable solutions.',
+  url: 'https://devbysergio.com/about',
+};
+---
+
+<BaseLayout title="About" seo={seo}>
+  <!-- Intro -->
+  <section class="py-20 max-w-3xl">
+    <h1 class="text-4xl font-semibold mb-6">
+      About me
+    </h1>
+
+    <p class="text-lg text-(--color-text-muted) mb-6">
+      I’m a full-stack developer with experience building real-world
+      applications, internal tools, and developer-focused products.
+      My work is driven by a strong focus on solving concrete problems
+      with scalable and maintainable solutions.
+    </p>
+
+    <p class="text-lg text-(--color-text-muted)">
+      I enjoy working across the stack, from system design and backend
+      logic to clean, purposeful front-end interfaces.
+    </p>
+  </section>
+
+  <!-- How I work -->
+  <section class="py-20 border-t border-(--color-border) max-w-3xl">
+    <h2 class="text-2xl font-semibold mb-6">
+      How I work
+    </h2>
+
+    <ul class="space-y-4 text-(--color-text-muted)">
+      <li>
+        • I focus on understanding the problem before choosing the
+        technology.
+      </li>
+      <li>
+        • I value clarity, maintainability and long-term impact over
+        short-term hacks.
+      </li>
+      <li>
+        • I enjoy improving workflows and building tools that make
+        developers more productive.
+      </li>
+      <li>
+        • I’m comfortable working autonomously while aligning with
+        team and business goals.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Technical focus -->
+  <section class="py-20 border-t border-(--color-border) max-w-4xl">
+    <h2 class="text-2xl font-semibold mb-8">
+      Technical focus
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="font-semibold mb-3">
+          Core stack
+        </h3>
+        <ul class="space-y-2 text-(--color-text-muted)">
+          <li>• TypeScript / JavaScript</li>
+          <li>• React, Astro</li>
+          <li>• Node.js</li>
+          <li>• SQL & relational databases</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-3">
+          Additional experience
+        </h3>
+        <ul class="space-y-2 text-(--color-text-muted)">
+          <li>• Developer tooling (VS Code extensions)</li>
+          <li>• Data-driven and AI-related projects</li>
+          <li>• Cloudflare & modern deployment workflows</li>
+          <li>• Performance and DX-focused architectures</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I'm looking for -->
+  <section class="py-20 border-t border-(--color-border) max-w-3xl">
+    <h2 class="text-2xl font-semibold mb-6">
+      What I’m looking for
+    </h2>
+
+    <p class="text-(--color-text-muted) mb-4">
+      I’m interested in working with teams that value engineering
+      quality, thoughtful system design and continuous improvement.
+    </p>
+
+    <p class="text-(--color-text-muted)">
+      I’m particularly motivated by environments where I can grow
+      towards a senior role, contribute to meaningful products, and
+      collaborate in an international context.
+    </p>
+  </section>
+
+  <!-- Links -->
+  <section class="py-20 border-t border-(--color-border)">
+    <h2 class="text-2xl font-semibold mb-6">
+      Find me online
+    </h2>
+
+    <ul class="flex flex-col sm:flex-row gap-4 text-sm">
+      <li>
+        <a
+          href="https://github.com/DevBySergio"
+          target="_blank"
+          rel="noreferrer"
+          class="text-(--color-brand) hover:underline"
+        >
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/sergio-del-cerro-32405238a/"
+          target="_blank"
+          rel="noreferrer"
+          class="text-(--color-brand) hover:underline"
+        >
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://marketplace.visualstudio.com/publishers/tu-nombre"
+          target="_blank"
+          rel="noreferrer"
+          class="text-(--color-brand) hover:underline"
+        >
+          VS Code Marketplace
+        </a>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

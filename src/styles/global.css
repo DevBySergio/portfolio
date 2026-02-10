@@ -29,3 +29,27 @@ html.dark {
 body {
   font-family: system-ui, sans-serif;
 }
+
+/* ---------- Smooth color & background transitions ---------- */
+* {
+  transition:
+    background-color 500ms ease,
+    color 500ms ease,
+    border-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+/* ---------- Reduce motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---------- Focus states ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

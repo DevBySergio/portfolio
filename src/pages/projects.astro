@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExtensionsCarousel from '../components/extensions/ExtensionsCarousel';
+import { projects } from '../data/projects';
+
+const featured = projects.filter(p => p.type === 'featured');
+const others = projects.filter(p => p.type === 'other');
+---
+
+<BaseLayout title="Projects">
+  <!-- Intro -->
+  <section class="py-20 max-w-3xl">
+    <h1 class="text-4xl font-semibold mb-6">
+      Projects
+    </h1>
+
+    <p class="text-lg text-(--color-text-muted)">
+      A selection of real-world projects and tools I’ve built, focusing on
+      solving concrete problems with scalable and maintainable solutions.
+    </p>
+  </section>
+
+  <!-- VS Code Extensions -->
+  <section class="py-20 border-t border-(--color-border)">
+    <ExtensionsCarousel client:load />
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="py-20 border-t border-(--color-border)">
+    <h2 class="text-3xl font-semibold mb-12">
+      Featured Projects
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      {featured.map(project => (
+        <article
+          class="
+            p-6 rounded
+            bg-(--color-surface-light)
+            dark:bg-(--color-surface-dark)
+          "
+        >
+          <img
+            src={project.image}
+            alt=""
+            class="rounded mb-6"
+          />
+
+          <h3 class="text-xl font-semibold mb-2">
+            {project.title}
+          </h3>
+
+          <p class="text-sm text-(--color-text-muted) mb-4">
+            {project.summary}
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mb-4">
+            {project.stack.map(tech => (
+              <li
+                class="
+                  text-xs px-2 py-1 rounded
+                  bg-(--color-surface-muted)
+                "
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={`/projects/${project.id}`}
+            class="text-sm font-medium text-(--color-brand)"
+          >
+            View details →
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="py-20 border-t border-(--color-border)">
+    <h2 class="text-3xl font-semibold mb-12">
+      Other Projects
+    </h2>
+
+    <ul class="space-y-6 max-w-3xl">
+      {others.map(project => (
+        <li class="flex justify-between items-center">
+          <div>
+            <h3 class="font-medium">
+              {project.title}
+            </h3>
+            <p class="text-sm text-(--color-text-muted)">
+              {project.summary}
+            </p>
+          </div>
+
+          <a
+            href={`/projects/${project.id}`}
+            class="text-sm text-(--color-brand)"
+          >
+            View →
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

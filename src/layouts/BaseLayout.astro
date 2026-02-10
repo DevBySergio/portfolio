@@ -2,7 +2,35 @@
 import '../styles/global.css';
 import DarkModeToggle from '../components/DarkModeToggle';
 
-const { title = 'Dev by Sergio' } = Astro.props;
+/**
+ * SEO props
+ */
+type SEO = {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+};
+
+const {
+  title = 'Sergio – Full-stack Developer',
+  seo,
+} = Astro.props;
+
+const SITE_URL = 'https://devbysergio.com';
+
+/**
+ * SEO fallbacks
+ */
+const metaTitle = seo?.title ?? title;
+const metaDescription =
+  seo?.description ??
+  'Full-stack developer focused on building scalable web applications and developer tools.';
+const metaImage = seo?.image
+  ? SITE_URL + seo.image
+  : SITE_URL + '/og-default.png';
+const metaUrl =
+  seo?.url ?? SITE_URL + Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -10,8 +38,25 @@ const { title = 'Dev by Sergio' } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
+
+    <!-- Primary SEO -->
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={metaUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={metaImage} />
+    <meta property="og:url" content={metaUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={metaImage} />
   </head>
 
   <body>
@@ -24,7 +69,9 @@ const { title = 'Dev by Sergio' } = Astro.props;
 
       <div class="flex items-center gap-6">
         <nav class="flex gap-6 text-sm text-(--color-text-muted)">
-          <a href="/" class="hover:text-(--color-brand)">Home</a>
+          <a href="/" class="hover:text-(--color-brand)">
+            Home
+          </a>
           <a href="/projects" class="hover:text-(--color-brand)">
             Projects
           </a>
