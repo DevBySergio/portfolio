@@ -2,9 +2,6 @@
 import '../styles/global.css';
 import DarkModeToggle from '../components/DarkModeToggle';
 
-/**
- * SEO props
- */
 type SEO = {
   title?: string;
   description?: string;
@@ -16,21 +13,26 @@ const {
   title = 'Sergio – Full-stack Developer',
   seo,
 } = Astro.props;
-
 const SITE_URL = 'https://devbysergio.com';
 
-/**
- * SEO fallbacks
- */
 const metaTitle = seo?.title ?? title;
-const metaDescription =
-  seo?.description ??
-  'Full-stack developer focused on building scalable web applications and developer tools.';
-const metaImage = seo?.image
-  ? SITE_URL + seo.image
-  : SITE_URL + '/og-default.png';
-const metaUrl =
-  seo?.url ?? SITE_URL + Astro.url.pathname;
+const metaDescription = seo?.description ?? 'Full-stack developer focused on building scalable web applications.';
+const metaImage = seo?.image ? SITE_URL + seo.image : SITE_URL + '/og-default.png';
+const metaUrl = seo?.url ?? SITE_URL + Astro.url.pathname;
+
+// Schema.org JSON-LD para SEO Senior
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sergio",
+  "url": SITE_URL,
+  "jobTitle": "Full-stack Developer",
+  "sameAs": [
+    "https://github.com/DevBySergio",
+    "https://linkedin.com/in/tu-perfil"
+  ],
+  "description": metaDescription
+};
 ---
 
 <!DOCTYPE html>
@@ -39,60 +41,109 @@ const metaUrl =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- Primary SEO -->
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={metaUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={metaImage} />
     <meta property="og:url" content={metaUrl} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={metaImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+      window.localStorage.setItem('theme', theme);
+    </script>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen bg-(--color-bg) text-(--color-text-main)">
+    
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-100 px-4 py-2 bg-(--color-brand) text-white font-bold rounded">
+      Skip to content
+    </a>
+
     <header
-      class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center"
+      class="sticky top-0 z-50 w-full border-b border-transparent transition-all duration-300
+             bg-white/80 dark:bg-(--color-bg)/80 backdrop-blur-md
+             hover:border-(--color-border) dark:hover:border-(--color-border-dark)"
     >
-      <span class="text-xl font-bold tracking-tight">
-        DEV<span class="text-(--color-brand)">BY</span>SERGIO
-      </span>
+      <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+        <a href="/" class="group flex items-center gap-1 text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity z-50">
+          <span class="text-(--color-brand)">DEV</span>
+          <span class="text-sm font-light text-(--color-text-muted) px-1">BY</span>
+          <span class="text-(--color-text-main)">SERGIO</span>
+        </a>
 
-      <div class="flex items-center gap-6">
-        <nav class="flex gap-6 text-sm text-(--color-text-muted)">
-          <a href="/" class="hover:text-(--color-brand)">
-            Home
-          </a>
-          <a href="/projects" class="hover:text-(--color-brand)">
-            Projects
-          </a>
-          <a href="/about" class="hover:text-(--color-brand)">
-            About
-          </a>
-        </nav>
+        <div class="hidden md:flex items-center gap-8">
+          <nav class="flex gap-8 text-sm font-medium text-(--color-text-muted)">
+            <a href="/" class="hover:text-(--color-brand) transition-colors">Home</a>
+            <a href="/projects" class="hover:text-(--color-brand) transition-colors">Projects</a>
+            <a href="/about" class="hover:text-(--color-brand) transition-colors">About</a>
+          </nav>
+          <div class="h-6 w-px bg-(--color-border) dark:bg-(--color-border-dark)"></div>
+          <DarkModeToggle client:load />
+        </div>
 
-        <!-- React island -->
-        <DarkModeToggle client:load />
+        <div class="flex items-center gap-4 md:hidden">
+            <DarkModeToggle client:load />
+            <button id="menu-toggle" aria-label="Toggle menu" class="p-2 -mr-2 text-(--color-text-main)">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-(--color-bg) border-b border-(--color-border) dark:border-(--color-border-dark) shadow-lg animate-in slide-in-from-top-2">
+          <nav class="flex flex-col p-6 gap-4 text-lg font-medium text-(--color-text-main)">
+            <a href="/" class="hover:text-(--color-brand)">Home</a>
+            <a href="/projects" class="hover:text-(--color-brand)">Projects</a>
+            <a href="/about" class="hover:text-(--color-brand)">About</a>
+          </nav>
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6">
+    <main id="main-content" class="flex-1 w-full max-w-7xl mx-auto px-6 focus:outline-none" tabindex="-1">
       <slot />
     </main>
 
-    <footer
-      class="max-w-7xl mx-auto px-6 py-10 text-sm text-(--color-text-muted)"
-    >
-      © {new Date().getFullYear()} Sergio · Built with Astro
+    <footer class="mt-auto border-t border-(--color-border) dark:border-(--color-border-dark)">
+      <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-(--color-text-muted)">
+        <span>© {new Date().getFullYear()} Sergio · Built with Astro</span>
+        <div class="flex gap-6">
+            <a href="https://github.com/DevBySergio" target="_blank" class="hover:text-(--color-brand)">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" class="hover:text-(--color-brand)">LinkedIn</a>
+        </div>
+      </div>
     </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('hidden');
+        });
+    </script>
   </body>
 </html>

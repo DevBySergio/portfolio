@@ -9,117 +9,139 @@ const seo = {
 };
 ---
 
-<BaseLayout title="About" seo={seo}>
-  <!-- Intro -->
-  <section class="py-20 max-w-3xl">
-    <h1 class="text-4xl font-semibold mb-6">
+<BaseLayout title="DbS · About" seo={seo}>
+  <section class="py-24 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-(--color-text-main)">
       About me
     </h1>
 
-    <p class="text-lg text-(--color-text-muted) mb-6">
-      I’m a full-stack developer with experience building real-world
-      applications, internal tools, and developer-focused products.
-      My work is driven by a strong focus on solving concrete problems
-      with scalable and maintainable solutions.
-    </p>
+    <div class="space-y-6 text-lg text-(--color-text-muted) leading-relaxed">
+        <p>
+        I’m a full-stack developer with experience building real-world
+        applications, internal tools, and developer-focused products.
+        My work is driven by a strong focus on solving concrete problems
+        with scalable and maintainable solutions.
+        </p>
 
-    <p class="text-lg text-(--color-text-muted)">
-      I enjoy working across the stack, from system design and backend
-      logic to clean, purposeful front-end interfaces.
-    </p>
+        <p>
+        I enjoy working across the stack, from system design and backend
+        logic to clean, purposeful front-end interfaces.
+        </p>
+    </div>
   </section>
 
-  <!-- How I work -->
-  <section class="py-20 border-t border-(--color-border) max-w-3xl">
-    <h2 class="text-2xl font-semibold mb-6">
+  <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark) max-w-3xl">
+    <h2 class="text-2xl font-bold mb-8 text-(--color-text-main)">
       How I work
     </h2>
 
-    <ul class="space-y-4 text-(--color-text-muted)">
-      <li>
-        • I focus on understanding the problem before choosing the
-        technology.
+    <ul class="space-y-6">
+      <li class="flex gap-4 items-start">
+        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
+        <span class="text-(--color-text-muted) text-lg">I focus on understanding the problem before choosing the technology.</span>
       </li>
-      <li>
-        • I value clarity, maintainability and long-term impact over
-        short-term hacks.
+      <li class="flex gap-4 items-start">
+        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
+        <span class="text-(--color-text-muted) text-lg">I value clarity, maintainability and long-term impact over short-term hacks.</span>
       </li>
-      <li>
-        • I enjoy improving workflows and building tools that make
-        developers more productive.
+      <li class="flex gap-4 items-start">
+        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
+        <span class="text-(--color-text-muted) text-lg">I enjoy improving workflows and building tools that make developers more productive.</span>
       </li>
-      <li>
-        • I’m comfortable working autonomously while aligning with
-        team and business goals.
+      <li class="flex gap-4 items-start">
+        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
+        <span class="text-(--color-text-muted) text-lg">I’m comfortable working autonomously while aligning with team and business goals.</span>
       </li>
     </ul>
   </section>
 
-  <!-- Technical focus -->
-  <section class="py-20 border-t border-(--color-border) max-w-4xl">
-    <h2 class="text-2xl font-semibold mb-8">
+  <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <h2 class="text-2xl font-bold mb-10 text-(--color-text-main)">
       Technical focus
     </h2>
 
     <div class="grid md:grid-cols-2 gap-12">
-      <div>
-        <h3 class="font-semibold mb-3">
-          Core stack
+      <div class="p-8 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-(--color-border-dark) shadow-sm dark:shadow-none">
+        <h3 class="font-bold text-lg mb-6 text-(--color-text-main) flex items-center gap-2">
+            Core stack
         </h3>
-        <ul class="space-y-2 text-(--color-text-muted)">
-          <li>• TypeScript / JavaScript</li>
-          <li>• React, Astro</li>
-          <li>• Node.js</li>
-          <li>• SQL & relational databases</li>
+        <ul class="space-y-4 text-(--color-text-muted)">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-(--color-brand)" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            TypeScript / JavaScript
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-(--color-brand)" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            React, Astro, Next.js
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-(--color-brand)" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Node.js
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-(--color-brand)" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            SQL & relational databases
+          </li>
         </ul>
       </div>
 
-      <div>
-        <h3 class="font-semibold mb-3">
+      <div class="p-8 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-(--color-border-dark) shadow-sm dark:shadow-none">
+        <h3 class="font-bold text-lg mb-6 text-(--color-text-main)">
           Additional experience
         </h3>
-        <ul class="space-y-2 text-(--color-text-muted)">
-          <li>• Developer tooling (VS Code extensions)</li>
-          <li>• Data-driven and AI-related projects</li>
-          <li>• Cloudflare & modern deployment workflows</li>
-          <li>• Performance and DX-focused architectures</li>
+        <ul class="space-y-4 text-(--color-text-muted)">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
+            Developer tooling (VS Code extensions)
+          </li>
+          <li class="flex items-center gap-3">
+             <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
+            Data-driven and AI-related projects
+          </li>
+          <li class="flex items-center gap-3">
+             <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
+            Cloudflare & modern deployment
+          </li>
+          <li class="flex items-center gap-3">
+             <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
+            Performance and DX-focused architectures
+          </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- What I'm looking for -->
-  <section class="py-20 border-t border-(--color-border) max-w-3xl">
-    <h2 class="text-2xl font-semibold mb-6">
+  <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark) max-w-3xl">
+    <h2 class="text-2xl font-bold mb-6 text-(--color-text-main)">
       What I’m looking for
     </h2>
 
-    <p class="text-(--color-text-muted) mb-4">
+    <p class="text-(--color-text-muted) mb-4 leading-relaxed">
       I’m interested in working with teams that value engineering
       quality, thoughtful system design and continuous improvement.
     </p>
 
-    <p class="text-(--color-text-muted)">
+    <p class="text-(--color-text-muted) leading-relaxed">
       I’m particularly motivated by environments where I can grow
       towards a senior role, contribute to meaningful products, and
       collaborate in an international context.
     </p>
   </section>
 
-  <!-- Links -->
-  <section class="py-20 border-t border-(--color-border)">
-    <h2 class="text-2xl font-semibold mb-6">
+  <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <h2 class="text-2xl font-bold mb-8 text-(--color-text-main)">
       Find me online
     </h2>
 
-    <ul class="flex flex-col sm:flex-row gap-4 text-sm">
+    <ul class="flex flex-col sm:flex-row gap-6 text-base font-medium">
       <li>
         <a
           href="https://github.com/DevBySergio"
           target="_blank"
           rel="noreferrer"
-          class="text-(--color-brand) hover:underline"
+          class="flex items-center gap-2 text-(--color-text-main) hover:text-(--color-brand) transition-colors"
         >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
           GitHub
         </a>
       </li>
@@ -128,8 +150,9 @@ const seo = {
           href="https://www.linkedin.com/in/sergio-del-cerro-32405238a/"
           target="_blank"
           rel="noreferrer"
-          class="text-(--color-brand) hover:underline"
+           class="flex items-center gap-2 text-(--color-text-main) hover:text-(--color-brand) transition-colors"
         >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
           LinkedIn
         </a>
       </li>
@@ -138,8 +161,9 @@ const seo = {
           href="https://marketplace.visualstudio.com/publishers/tu-nombre"
           target="_blank"
           rel="noreferrer"
-          class="text-(--color-brand) hover:underline"
+           class="flex items-center gap-2 text-(--color-text-main) hover:text-(--color-brand) transition-colors"
         >
+           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.15 2.587l-9.8.966-5.87-5.166L.867 7.032.55 16.968l6.913 8.646 5.87-5.167 9.8.967a1.67 1.67 0 0 0 1.867-1.67V4.257a1.67 1.67 0 0 0-1.85-1.67zM22 17.653l-8.623-1.313V7.66L22 6.35v11.303zm-11.623 2.06L4.032 23.08V.92L10.377 4.29v15.423z"/></svg>
           VS Code Marketplace
         </a>
       </li>
