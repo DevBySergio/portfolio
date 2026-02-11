@@ -2,64 +2,76 @@
 
 /* ---------- Design tokens ---------- */
 :root {
+  /* --- MODO CLARO (Por defecto) --- */
+  /* Fondo: Blanco roto (casi gris muy claro) para que no dañe la vista */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f4f5; /* Zinc-100 */
+
+  /* Bordes: Gris suave para separar elementos en modo claro */
+  --color-border: #e4e4e7; /* Zinc-200 */
+
+  /* Texto: NEGRO o GRIS MUY OSCURO (Crucial para que se lea en fondo blanco) */
+  --color-text-main: #18181b; /* Zinc-900 */
+  --color-text-muted: #71717a; /* Zinc-500 */
+
+  /* Marca */
   --color-brand: #ff5a1f;
+  --color-brand-dark: #ea580c;
+}
 
-  --color-bg-light: #f8f8f8;
-  --color-bg-dark: #0f0f0f;
+html.dark {
+  /* --- MODO OSCURO --- */
+  /* Fondo: Negro 'Zinc' profundo */
+  --color-bg: #09090b;
+  --color-surface: #18181b; /* Zinc-900 */
+  --color-surface-muted: #27272a; /* Zinc-800 */
 
-  --color-surface-light: #ffffff;
-  --color-surface-dark: #1a1a1a;
+  /* Bordes: Gris oscuro sutil */
+  --color-border: #27272a;
 
-  --color-text-light: #1a1a1a;
-  --color-text-dark: #e5e5e5;
-  --color-text-muted: #9ca3af;
+  /* Texto: BLANCO o GRIS MUY CLARO */
+  --color-text-main: #f4f4f5; /* Zinc-100 */
+  --color-text-muted: #a1a1aa; /* Zinc-400 */
 }
 
 /* ---------- Base styles ---------- */
 html {
-  background-color: var(--color-bg-light);
-  color: var(--color-text-light);
-}
-
-html.dark {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-dark);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Smooth color & background transitions ---------- */
-* {
-  transition:
-    background-color 500ms ease,
-    color 500ms ease,
-    border-color 500ms ease,
-    box-shadow 500ms ease;
-}
-
-/* ---------- Reduce motion preference ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
+/* ---------- Smooth transitions ---------- */
+body,
+header,
+footer,
+div,
+section,
+article,
+a,
+button,
+input {
+  transition-property:
+    background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ---------- Focus states ---------- */
-
 :focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
   border-radius: 4px;
-}
-
-/* ---------- Hide scrollbar cross-browser ---------- */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }

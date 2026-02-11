@@ -6,64 +6,75 @@ const featured = projects.filter(p => p.type === 'featured');
 ---
 
 <BaseLayout title="DbS · Software Developer">
-  <!-- ================= HERO ================= -->
-  <section class="py-28 flex flex-col gap-8">
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-      Full-Stack<br />
-      <span class="text-(--color-brand)">
-        Software Developer
-      </span>
-    </h1>
+  <section class="py-32 flex flex-col justify-center gap-8 max-w-4xl">
+    <div class="space-y-4">
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-(--color-text-main)">
+        Sergio del Cerro<br />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-(--color-brand) to-orange-400">
+          Full-Stack Developer
+        </span>
+      </h1>
+    </div>
 
-    <p class="max-w-2xl text-lg text-(--color-text-muted)">
+    <p class="max-w-2xl text-xl text-(--color-text-muted) leading-relaxed">
       I build real-world web applications and developer tools,
-      focused on scalability, performance and developer experience.
+      focused on scalability, performance, and delivering exceptional developer experiences.
     </p>
 
-    <div class="flex gap-4 mt-4">
+    <div class="flex flex-wrap gap-4 mt-4">
       <a
         href="/projects"
-        class="px-6 py-3 rounded font-medium
-               bg-(--color-brand) text-white
-               hover:opacity-90 transition"
+        class="px-8 py-3.5 rounded-lg font-semibold text-white
+               bg-(--color-brand) hover:bg-(--color-brand-dark)
+               transform hover:-translate-y-0.5 transition-all shadow-lg shadow-orange-500/20"
       >
         View Projects
       </a>
 
       <a
         href="/projects#extensions"
-        class="px-6 py-3 rounded font-medium
-               border border-(--color-text-muted)
-               hover:border-(--color-brand)
-               transition"
+        class="px-8 py-3.5 rounded-lg font-medium
+               bg-white dark:bg-(--color-surface-muted)
+               text-(--color-text-main)
+               border border-(--color-border) dark:border-(--color-border-dark)
+               hover:border-(--color-brand) dark:hover:border-(--color-brand)
+               transition-colors shadow-sm"
       >
         VS Code Extensions
       </a>
     </div>
   </section>
 
-  <!-- ================= VALUE PROPOSITION ================= -->
-  <section class="py-20 border-t border-neutral-200 dark:border-neutral-800">
-    <div class="grid md:grid-cols-3 gap-10">
-      <div>
-        <h3 class="font-semibold mb-2">Product mindset</h3>
-        <p class="text-sm text-(--color-text-muted)">
+  <section class="py-24 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-transparent hover:border-(--color-brand)/30 transition-colors shadow-sm dark:shadow-none">
+        <div class="w-10 h-10 mb-4 rounded bg-(--color-brand)/10 flex items-center justify-center text-(--color-brand)">
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">Product mindset</h3>
+        <p class="text-(--color-text-muted)">
           Experience building solutions for real clients,
           focusing on business impact and usability.
         </p>
       </div>
 
-      <div>
-        <h3 class="font-semibold mb-2">Developer tooling</h3>
-        <p class="text-sm text-(--color-text-muted)">
+      <div class="p-6 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-transparent hover:border-(--color-brand)/30 transition-colors shadow-sm dark:shadow-none">
+        <div class="w-10 h-10 mb-4 rounded bg-(--color-brand)/10 flex items-center justify-center text-(--color-brand)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">Developer tooling</h3>
+        <p class="text-(--color-text-muted)">
           VS Code extensions and internal tools that improve
           productivity and developer workflows.
         </p>
       </div>
 
-      <div>
-        <h3 class="font-semibold mb-2">Scalable architecture</h3>
-        <p class="text-sm text-(--color-text-muted)">
+      <div class="p-6 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-transparent hover:border-(--color-brand)/30 transition-colors shadow-sm dark:shadow-none">
+        <div class="w-10 h-10 mb-4 rounded bg-(--color-brand)/10 flex items-center justify-center text-(--color-brand)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">Scalable architecture</h3>
+        <p class="text-(--color-text-muted)">
           Clean code, maintainable systems and pragmatic
           engineering decisions.
         </p>
@@ -71,54 +82,66 @@ const featured = projects.filter(p => p.type === 'featured');
     </div>
   </section>
 
-  <!-- ================= FEATURED PROJECTS (New) ================= -->
-   <section>
-  <h2 class="text-2xl font-semibold mb-8">
-    Featured Projects
-  </h2>
-
-  <div class="grid md:grid-cols-2 gap-8">
-    {featured.map(project => (
-      <article
-        class="p-6 rounded
-               bg-(--color-surface-light)
-               dark:bg-(--color-surface-dark)"
-      >
-        <h3 class="text-xl font-semibold mb-2">
-          {project.title}
-        </h3>
-        <p class="text-sm text-(--color-text-muted) mb-4">
-          {project.summary}
-        </p>
-        <a
-          href={`/projects/${project.id}`}
-          class="text-sm font-medium text-(--color-brand)"
-        >
-          View project →
+  <section class="py-12">
+    <div class="flex items-end justify-between mb-8">
+        <h2 class="text-3xl font-bold text-(--color-text-main)">
+            Featured Projects
+        </h2>
+        <a href="/projects" class="hidden md:inline-block text-sm font-medium text-(--color-brand) hover:text-(--color-brand-dark) hover:underline">
+            View all projects →
         </a>
-      </article>
-    ))}
-  </div>
-</section>
+    </div>
 
-  <!-- ================= TOOLING PREVIEW ================= -->
-  <section class="py-20 border-t border-neutral-200 dark:border-neutral-800">
-    <h2 class="text-2xl font-semibold mb-4">
-      Developer Tooling
-    </h2>
+    <div class="grid md:grid-cols-2 gap-6">
+        {featured.map(project => (
+        <article
+            class="group relative flex flex-col p-8 rounded-2xl
+                   bg-white dark:bg-(--color-surface-dark)
+                   border border-(--color-border) dark:border-(--color-border-dark)
+                   hover:border-(--color-brand) dark:hover:border-(--color-brand)
+                   shadow-sm hover:shadow-md transition-all duration-300"
+        >
+            <h3 class="text-2xl font-bold mb-3 text-(--color-text-main) group-hover:text-(--color-brand) transition-colors">
+            {project.title}
+            </h3>
+            <p class="text-(--color-text-muted) mb-6 flex-1">
+            {project.summary}
+            </p>
+            <div class="mt-auto">
+                <span class="inline-flex items-center text-sm font-semibold text-(--color-brand)">
+                View project 
+                <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+            </div>
+            <a href={`/projects/${project.id}`} class="absolute inset-0 z-10" aria-label={`View project ${project.title}`}></a>
+        </article>
+        ))}
+    </div>
+    
+    <div class="mt-8 text-center md:hidden">
+        <a href="/projects" class="text-sm font-medium text-(--color-brand)">View all projects →</a>
+    </div>
+  </section>
 
-    <p class="max-w-xl text-(--color-text-muted) mb-6">
-      A collection of VS Code extensions focused on solving
-      real development problems and improving daily workflows.
-    </p>
+  <section class="py-24 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <div class="bg-(--color-surface-muted) dark:bg-(--color-surface-dark) rounded-2xl p-8 md:p-12 text-center border border-(--color-border) dark:border-transparent">
+        <h2 class="text-3xl font-bold mb-4 text-(--color-text-main)">
+        Developer Tooling
+        </h2>
 
-    <a
-      href="/projects#extensions"
-      class="inline-block text-sm font-medium
-             text-(--color-brand)
-             hover:underline"
-    >
-      Explore extensions →
-    </a>
+        <p class="max-w-xl mx-auto text-(--color-text-muted) mb-8">
+        A collection of VS Code extensions focused on solving
+        real development problems and improving daily workflows.
+        </p>
+
+        <a
+        href="/projects#extensions"
+        class="inline-block px-6 py-3 rounded-lg text-sm font-medium
+                bg-(--color-brand) text-white
+                hover:bg-(--color-brand-dark) transition-colors"
+        >
+        Explore extensions
+        </a>
+    </div>
   </section>
 </BaseLayout>
