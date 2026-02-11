@@ -8,45 +8,92 @@ export default function ExtensionsCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<Extension | null>(null);
 
-  const scroll = (dir: "left" | "right") => {
+  const scroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
 
-    const amount = dir === "left" ? -300 : 300;
-    containerRef.current.scrollBy({
-      left: amount,
+    const container = containerRef.current;
+
+    // Detectar ancho real de una card
+    const firstCard = container.querySelector("div");
+    if (!firstCard) return;
+
+    const cardWidth = firstCard.clientWidth + 24; // 24 = gap-6
+    const visibleCards = Math.floor(container.clientWidth / cardWidth);
+
+    const scrollAmount = cardWidth * (visibleCards || 1);
+
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
   };
 
   return (
     <>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-10">
         <h2 className="text-2xl font-semibold">VS Code Extensions</h2>
 
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <button
             onClick={() => scroll("left")}
-            className="px-3 py-1 border rounded"
+            className="
+              w-10 h-10
+              flex items-center justify-center
+              rounded-full
+              border border-(--color-border)
+              bg-(--color-surface)
+              hover:border-(--color-brand)
+              hover:scale-105
+              transition
+            "
           >
             ←
           </button>
+
           <button
             onClick={() => scroll("right")}
-            className="px-3 py-1 border rounded"
+            className="
+              w-10 h-10
+              flex items-center justify-center
+              rounded-full
+              border border-(--color-border)
+              bg-(--color-surface)
+              hover:border-(--color-brand)
+              hover:scale-105
+              transition
+            "
           >
             →
           </button>
         </div>
       </div>
 
-      <div ref={containerRef} className="flex gap-4 overflow-x-auto pb-4">
-        {extensions.map((ext) => (
-          <ExtensionCard
-            key={ext.id}
-            extension={ext}
-            onClick={() => setActive(ext)}
-          />
-        ))}
+      {/* WRAPPER CON FADE */}
+      <div className="relative">
+        {/* Fade left */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-linear-to-r from-(--color-bg) to-transparent z-10" />
+
+        {/* Fade right */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-linear-to-l from-(--color-bg) to-transparent z-10" />
+
+        <div className="overflow-hidden">
+          <div
+            ref={containerRef}
+            className="
+              flex gap-6
+              overflow-x-auto
+              scroll-smooth
+              snap-x snap-mandatory
+              no-scrollbar
+            "
+          >
+            {extensions.map((ext) => (
+              <div key={ext.id} className="shrink-0 w-300px snap-start">
+                <ExtensionCard extension={ext} onClick={() => setActive(ext)} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {active && (

@@ -10,16 +10,16 @@ export default function ExtensionCard({ extension, onClick }: Props) {
     <button
       onClick={onClick}
       className="
-        min-w-260px
-        p-5
-        rounded
-        text-left
-        bg-(--color-surface-light)
-        dark:bg-(--color-surface-dark)
-        border border-transparent
-        hover:border-(--color-brand)
-        transition
-      "
+    w-full
+    p-5
+    rounded
+    text-left
+    bg-(--color-surface-light)
+    dark:bg-(--color-surface-dark)
+    border border-transparent
+    hover:border-(--color-brand)
+    transition
+  "
     >
       <img src={extension.icon} alt="" className="w-10 h-10 mb-4" />
 
