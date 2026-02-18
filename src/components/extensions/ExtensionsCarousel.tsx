@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-// Asegúrate de que la ruta de importación sea correcta según tu estructura
 import { extensions } from "../../data/extensions";
 import ExtensionCard from "./ExtensionCard";
 import ExtensionModal from "./ExtensionModal";
@@ -11,17 +10,10 @@ export default function ExtensionsCarousel() {
 
   const scroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
-
     const container = containerRef.current;
 
-    // Detectar ancho real de una card más el gap
-    const firstCard = container.querySelector("div");
-    // Fallback seguro si no hay cards renderizadas aún
-    const cardWidth = firstCard ? firstCard.clientWidth + 24 : 320;
-
-    // Calcular cuántas cards caben en la vista para scrollear un bloque lógico
-    const visibleCards = Math.floor(container.clientWidth / cardWidth);
-    const scrollAmount = cardWidth * (visibleCards || 1);
+    // Ancho aproximado de tarjeta + gap
+    const scrollAmount = 340;
 
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
@@ -31,23 +23,21 @@ export default function ExtensionsCarousel() {
 
   return (
     <>
-      <div className="flex justify-between items-end mb-8">
-        <div>
-          {/* El título ya suele venir de la página padre, pero si este componente es autónomo está bien aquí */}
-        </div>
+      <div className="flex justify-between items-end mb-6 px-1">
+        <div>{/* Espacio para título si fuera necesario */}</div>
 
         <div className="flex gap-2">
           <button
             onClick={() => scroll("left")}
             className="
-              w-10 h-10
+              w-9 h-9
               flex items-center justify-center
               rounded-full
               border border-(--color-border) dark:border-(--color-border-dark)
-              bg-white dark:bg-(--color-surface-dark)
-              text-(--color-text-main)
-              hover:border-(--color-brand) hover:text-(--color-brand)
-              transition-colors shadow-sm
+              bg-white dark:bg-(--color-surface)
+              text-(--color-text-muted)
+              hover:text-(--color-brand) hover:border-(--color-brand)
+              transition-all hover:scale-105 active:scale-95
             "
             aria-label="Scroll left"
           >
@@ -56,14 +46,14 @@ export default function ExtensionsCarousel() {
           <button
             onClick={() => scroll("right")}
             className="
-              w-10 h-10
+              w-9 h-9
               flex items-center justify-center
               rounded-full
               border border-(--color-border) dark:border-(--color-border-dark)
-              bg-white dark:bg-(--color-surface-dark)
-              text-(--color-text-main)
-              hover:border-(--color-brand) hover:text-(--color-brand)
-              transition-colors shadow-sm
+              bg-white dark:bg-(--color-surface)
+              text-(--color-text-muted)
+              hover:text-(--color-brand) hover:border-(--color-brand)
+              transition-all hover:scale-105 active:scale-95
             "
             aria-label="Scroll right"
           >
@@ -72,38 +62,42 @@ export default function ExtensionsCarousel() {
         </div>
       </div>
 
-      {/* WRAPPER CON FADE */}
-      <div className="relative group">
-        {/* Fade left: Usa --color-bg para fundirse con el fondo de la sección */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-12 bg-linear-to-r from-(--color-bg) to-transparent z-10" />
+      {/* WRAPPER CON MÁSCARA CSS 
+         La magia está aquí: [mask-image:linear-gradient(...)] 
+         Esto desvanece los bordes usando transparencia alpha real, 
+         evitando el problema de coincidencia de colores en modo oscuro/claro.
+      */}
+      <div
+        className="relative -mx-4 px-4"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 20px, black 95%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 20px, black 95%, transparent)",
+        }}
+      >
+        <div
+          ref={containerRef}
+          className="
+            flex gap-5
+            overflow-x-auto
+            scroll-smooth
+            snap-x snap-mandatory
+            no-scrollbar
+            py-4 /* Padding vertical para que no se corten las sombras */
+          "
+        >
+          {extensions.map((ext) => (
+            <div
+              key={ext.id}
+              className="shrink-0 w-[280px] md:w-[320px] snap-start h-auto"
+            >
+              <ExtensionCard extension={ext} onClick={() => setActive(ext)} />
+            </div>
+          ))}
 
-        {/* Fade right */}
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-linear-to-l from-(--color-bg) to-transparent z-10" />
-
-        <div className="overflow-hidden -mx-4 px-4 py-4">
-          {" "}
-          {/* Margen negativo para permitir sombras sin corte */}
-          <div
-            ref={containerRef}
-            className="
-              flex gap-6
-              overflow-x-auto
-              scroll-smooth
-              snap-x snap-mandatory
-              no-scrollbar
-            "
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {extensions.map((ext) => (
-              /* Ancho fijo ajustado para buen responsive */
-              <div
-                key={ext.id}
-                className="shrink-0 w-280px md:w-[320px] snap-start h-auto"
-              >
-                <ExtensionCard extension={ext} onClick={() => setActive(ext)} />
-              </div>
-            ))}
-          </div>
+          {/* Espaciador final para asegurar que el último elemento no quede pegado al fade */}
+          <div className="w-1 shrink-0" />
         </div>
       </div>
 

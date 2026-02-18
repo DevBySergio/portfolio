@@ -2,37 +2,23 @@
 
 /* ---------- Design tokens ---------- */
 :root {
-  /* --- MODO CLARO (Por defecto) --- */
-  /* Fondo: Blanco roto (casi gris muy claro) para que no dañe la vista */
   --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-surface-muted: #f4f4f5; /* Zinc-100 */
-
-  /* Bordes: Gris suave para separar elementos en modo claro */
-  --color-border: #e4e4e7; /* Zinc-200 */
-
-  /* Texto: NEGRO o GRIS MUY OSCURO (Crucial para que se lea en fondo blanco) */
-  --color-text-main: #18181b; /* Zinc-900 */
-  --color-text-muted: #71717a; /* Zinc-500 */
-
-  /* Marca */
+  --color-surface-muted: #f4f4f5;
+  --color-border: #e4e4e7;
+  --color-text-main: #18181b;
+  --color-text-muted: #71717a;
   --color-brand: #ff5a1f;
   --color-brand-dark: #ea580c;
 }
 
 html.dark {
-  /* --- MODO OSCURO --- */
-  /* Fondo: Negro 'Zinc' profundo */
   --color-bg: #09090b;
-  --color-surface: #18181b; /* Zinc-900 */
-  --color-surface-muted: #27272a; /* Zinc-800 */
-
-  /* Bordes: Gris oscuro sutil */
+  --color-surface: #18181b;
+  --color-surface-muted: #27272a;
   --color-border: #27272a;
-
-  /* Texto: BLANCO o GRIS MUY CLARO */
-  --color-text-main: #f4f4f5; /* Zinc-100 */
-  --color-text-muted: #a1a1aa; /* Zinc-400 */
+  --color-text-main: #f4f4f5;
+  --color-text-muted: #a1a1aa;
 }
 
 /* ---------- Base styles ---------- */
@@ -65,13 +51,51 @@ input {
   transition-property:
     background-color, border-color, color, fill, stroke, opacity, box-shadow,
     transform;
-  transition-duration: 500ms;
+  transition-duration: 300ms; /* Ajustado a 300ms para mayor agilidad */
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---------- Focus states ---------- */
 :focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ---------- Utilities Custom ---------- */
+/* Ocultar scrollbar pero permitir scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animaciones para el Modal */
+@keyframes modal-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-overlay {
+  animation: modal-overlay-in 0.2s ease-out forwards;
+}
+
+.animate-modal-content {
+  animation: modal-content-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

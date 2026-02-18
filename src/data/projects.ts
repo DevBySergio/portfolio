@@ -26,6 +26,7 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  // Los 2 primeros proyectos son los MAIN
   {
     id: "client-project-a",
     title: "Client Project A",
@@ -56,9 +57,21 @@ export const projects: Project[] = [
 
     year: 2023,
   },
+  // Estos proyectos son los secundarios
   {
     id: "internal-tool",
     title: "Internal Tool",
+    summary: "Small internal productivity tool.",
+    description:
+      "A lightweight internal tool built to automate repetitive tasks and improve team efficiency.",
+    type: "other",
+
+    stack: ["TypeScript", "Node.js"],
+    image: "/images/projects/internal-tool.png",
+  },
+  {
+    id: "internal-tool-2",
+    title: "Internal Tool 2",
     summary: "Small internal productivity tool.",
     description:
       "A lightweight internal tool built to automate repetitive tasks and improve team efficiency.",
