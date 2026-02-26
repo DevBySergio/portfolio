@@ -27,24 +27,24 @@ export const extensions: Extension[] = [
       "/images/extensions/dev-tracker/2.png",
     ],
 
-    tags: ["VS Code", "Productivity", "TypeScript"],
+    tags: ["VS Code", "Productivity", "Metrics"],
   },
   {
-    id: "time-tracker-02",
-    name: "Time Tracker 2",
+    id: "better-images",
+    name: "BetterImages by Sergio",
     description:
-      "VS Code extension to track coding time, projects and productivity metrics.",
+      "VS Code extension to edit, process and generate sample images.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/items?itemName=your-name.time-tracker",
-    repoUrl: "https://github.com/your-name/time-tracker",
+      "https://marketplace.visualstudio.com/items?itemName=DevBySergio.betterimages",
+    repoUrl: "https://github.com/DevBySergio/BetterImages_by_Sergio",
 
-    icon: "/images/extensions/time-tracker/icon.png",
+    icon: "/images/extensions/betterImages/icon.png",
     screenshots: [
-      "/images/extensions/time-tracker/1.png",
-      "/images/extensions/time-tracker/2.png",
+      "/images/extensions/betterImages/1.png",
+      "/images/extensions/betterImages/2.png",
     ],
 
-    tags: ["VS Code", "Productivity", "TypeScript"],
+    tags: ["VS Code", "Productivity", "Images"],
   },
   {
     id: "time-tracker-03",
@@ -52,8 +52,8 @@ export const extensions: Extension[] = [
     description:
       "VS Code extension to track coding time, projects and productivity metrics.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/items?itemName=your-name.time-tracker",
-    repoUrl: "https://github.com/your-name/time-tracker",
+      "https://marketplace.visualstudio.com/publishers/DevBySergio",
+    repoUrl: "https://github.com/DevBySergio",
 
     icon: "/images/extensions/time-tracker/icon.png",
     screenshots: [
@@ -69,8 +69,8 @@ export const extensions: Extension[] = [
     description:
       "VS Code extension to track coding time, projects and productivity metrics.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/items?itemName=your-name.time-tracker",
-    repoUrl: "https://github.com/your-name/time-tracker",
+      "https://marketplace.visualstudio.com/publishers/DevBySergio",
+    repoUrl: "https://github.com/DevBySergio",
 
     icon: "/images/extensions/time-tracker/icon.png",
     screenshots: [
@@ -86,8 +86,8 @@ export const extensions: Extension[] = [
     description:
       "VS Code extension to track coding time, projects and productivity metrics.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/items?itemName=your-name.time-tracker",
-    repoUrl: "https://github.com/your-name/time-tracker",
+      "https://marketplace.visualstudio.com/publishers/DevBySergio",
+    repoUrl: "https://github.com/DevBySergio",
 
     icon: "/images/extensions/time-tracker/icon.png",
     screenshots: [
