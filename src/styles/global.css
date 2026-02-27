@@ -100,3 +100,25 @@ input {
 .animate-modal-content {
   animation: modal-content-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Animación de la consola de presentación */
+
+.animate-ide-typing {
+  /* 28 es el número de caracteres exactos de la frase */
+  animation: ide-typing 6s steps(28, end) infinite;
+}
+
+@keyframes ide-typing {
+  0%,
+  10% {
+    width: 0;
+  }
+  50%,
+  70% {
+    width: 100%;
+  }
+  90%,
+  100% {
+    width: 0;
+  }
+}
