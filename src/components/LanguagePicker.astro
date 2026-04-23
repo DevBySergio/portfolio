@@ -1,0 +1,52 @@
+---
+import { defaultLanguage, languages, type Language } from '../i18n/ui';
+import { localizedPath } from '../i18n/utils';
+
+interface Props {
+  currentLang: Language;
+  pathname: string;
+  label: string;
+}
+
+const { currentLang, pathname, label } = Astro.props;
+
+const stripLocalePrefix = (path: string): string => {
+  const segments = path.split('/').filter(Boolean);
+  if (segments[0] && segments[0] in languages) {
+    const remaining = segments.slice(1).join('/');
+    return remaining ? `/${remaining}` : '/';
+  }
+  return path || '/';
+};
+
+const basePath = stripLocalePrefix(pathname);
+
+const getHref = (lang: Language): string => {
+  if (lang === defaultLanguage) {
+    return basePath;
+  }
+  return localizedPath(lang, basePath);
+};
+---
+
+<nav aria-label={label} class="flex items-center gap-2 text-xs font-semibold tracking-wide text-(--color-text-muted)">
+  {Object.entries(languages).map(([langCode, languageName]) => {
+    const lang = langCode as Language;
+    const isActive = currentLang === lang;
+
+    return (
+      <a
+        href={getHref(lang)}
+        hreflang={lang}
+        aria-current={isActive ? 'page' : undefined}
+        class={`px-2 py-1 rounded border transition-colors ${
+          isActive
+            ? 'border-(--color-brand) text-(--color-brand)'
+            : 'border-(--color-border) dark:border-(--color-border-dark) hover:border-(--color-brand)'
+        }`}
+      >
+        {languageName}
+      </a>
+    );
+  })}
+</nav>

@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import DarkModeToggle from '../components/DarkModeToggle';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { getLangFromUrl, localizedPath, useTranslations } from '../i18n/utils';
 
 type SEO = {
   title?: string;
@@ -14,9 +16,11 @@ const {
   seo,
 } = Astro.props;
 const SITE_URL = 'https://devbysergio.com';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const metaTitle = seo?.title ?? title;
-const metaDescription = seo?.description ?? 'Full-stack developer focused on building scalable web applications.';
+const metaDescription = seo?.description ?? t('meta.description');
 const metaImage = seo?.image ? SITE_URL + seo.image : SITE_URL + '/og-default.png';
 const metaUrl = seo?.url ?? SITE_URL + Astro.url.pathname;
 
@@ -36,7 +40,7 @@ const jsonLd = {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -88,7 +92,7 @@ const jsonLd = {
              hover:border-(--color-border) dark:hover:border-(--color-border-dark)"
     >
       <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-        <a href="/" class="group flex items-center gap-1 text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity z-50">
+        <a href={localizedPath(lang, '/')} class="group flex items-center gap-1 text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity z-50">
           <span class="text-(--color-brand)">DEV</span>
           <span class="text-sm font-light text-(--color-text-muted) px-1">BY</span>
           <span class="text-(--color-text-main)">SERGIO</span>
@@ -96,10 +100,11 @@ const jsonLd = {
 
         <div class="hidden md:flex items-center gap-8">
           <nav class="flex gap-8 text-sm font-medium text-(--color-text-muted)">
-            <a href="/" class="hover:text-(--color-brand) transition-colors">Home</a>
-            <a href="/projects" class="hover:text-(--color-brand) transition-colors">Projects</a>
-            <a href="/about" class="hover:text-(--color-brand) transition-colors">About</a>
+            <a href={localizedPath(lang, "/")} class="hover:text-(--color-brand) transition-colors">{t('nav.home')}</a>
+            <a href={localizedPath(lang, "/projects")} class="hover:text-(--color-brand) transition-colors">{t('nav.projects')}</a>
+            <a href={localizedPath(lang, "/about")} class="hover:text-(--color-brand) transition-colors">{t('nav.about')}</a>
           </nav>
+          <LanguagePicker currentLang={lang} pathname={Astro.url.pathname} label={t('language.label')} />
           <div class="h-6 w-px bg-(--color-border) dark:bg-(--color-border-dark)"></div>
           <DarkModeToggle client:load />
         </div>
@@ -116,9 +121,9 @@ const jsonLd = {
 
       <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-(--color-bg) border-b border-(--color-border) dark:border-(--color-border-dark) shadow-lg animate-in slide-in-from-top-2">
           <nav class="flex flex-col p-6 gap-4 text-lg font-medium text-(--color-text-main)">
-            <a href="/" class="hover:text-(--color-brand)">Home</a>
-            <a href="/projects" class="hover:text-(--color-brand)">Projects</a>
-            <a href="/about" class="hover:text-(--color-brand)">About</a>
+            <a href={localizedPath(lang, "/")} class="hover:text-(--color-brand)">{t('nav.home')}</a>
+            <a href={localizedPath(lang, "/projects")} class="hover:text-(--color-brand)">{t('nav.projects')}</a>
+            <a href={localizedPath(lang, "/about")} class="hover:text-(--color-brand)">{t('nav.about')}</a>
           </nav>
       </div>
     </header>
@@ -129,10 +134,10 @@ const jsonLd = {
 
     <footer class="mt-auto border-t border-(--color-border) dark:border-(--color-border-dark)">
       <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-(--color-text-muted)">
-        <span>© {new Date().getFullYear()} Sergio · Built with Astro</span>
+        <span>© {new Date().getFullYear()} Sergio · {t('footer.builtWith')}</span>
         <div class="flex gap-6">
-            <a href="https://github.com/DevBySergio" target="_blank" class="hover:text-(--color-brand)">GitHub</a>
-            <a href="https://linkedin.com" target="_blank" class="hover:text-(--color-brand)">LinkedIn</a>
+            <a href="https://github.com/DevBySergio" target="_blank" class="hover:text-(--color-brand)">{t('footer.github')}</a>
+            <a href="https://linkedin.com" target="_blank" class="hover:text-(--color-brand)">{t('footer.linkedin')}</a>
         </div>
       </div>
     </footer>
