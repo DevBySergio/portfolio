@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExtensionsCarousel from '../../components/extensions/ExtensionsCarousel';
+import { projects } from '../../data/projects';
+
+const featured = projects.filter(p => p.type === 'featured');
+const others = projects.filter(p => p.type === 'other');
+---
+
+<BaseLayout title="DbS · Projects">
+  <section class="py-24 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-(--color-text-main)">
+      Projects
+    </h1>
+
+    <p class="text-xl text-(--color-text-muted) leading-relaxed">
+      A selection of real-world projects and tools I’ve built, focusing on
+      solving concrete problems with scalable and maintainable solutions.
+    </p>
+  </section>
+
+  <section id="extensions" class="py-12 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-(--color-text-main)">VS Code Extensions</h2>
+        <p class="text-(--color-text-muted)">Tools to boost your productivity.</p>
+    </div>
+    <ExtensionsCarousel client:load />
+  </section>
+
+  <section class="py-24 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <h2 class="text-3xl font-bold mb-12 text-(--color-text-main)">
+      Featured Projects
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      {featured.map(project => (
+        <article
+          class="
+            flex flex-col rounded-2xl overflow-hidden
+            bg-white dark:bg-(--color-surface-dark)
+            border border-(--color-border) dark:border-(--color-border-dark)
+            hover:shadow-lg dark:hover:shadow-none
+            hover:border-(--color-brand)/50 dark:hover:border-(--color-brand)
+            transition-all duration-300
+          "
+        >
+          <div class="aspect-video w-full bg-(--color-surface-muted) dark:bg-(--color-surface-muted-dark) overflow-hidden border-b border-(--color-border) dark:border-transparent">
+             <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+              />
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="text-2xl font-bold mb-3 text-(--color-text-main)">
+                {project.title}
+            </h3>
+
+            <p class="text-sm text-(--color-text-muted) mb-6 flex-1 leading-relaxed">
+                {project.summary}
+            </p>
+
+            <ul class="flex flex-wrap gap-2 mb-6">
+                {project.stack.map(tech => (
+                <li
+                    class="
+                    text-xs font-medium px-2.5 py-1 rounded-full
+                    bg-(--color-surface-muted) dark:bg-(--color-surface-muted-dark)
+                    text-(--color-text-main) dark:text-(--color-text-muted-dark)
+                    border border-transparent dark:border-(--color-border-dark)
+                    "
+                >
+                    {tech}
+                </li>
+                ))}
+            </ul>
+
+            <a
+                href={`/projects/${project.id}`}
+                class="inline-flex items-center text-sm font-semibold text-(--color-brand) hover:text-(--color-brand-dark)"
+            >
+                View details 
+                <span class="ml-1">→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-24 border-t border-(--color-border) dark:border-(--color-border-dark)">
+    <h2 class="text-3xl font-bold mb-12 text-(--color-text-main)">
+      Other Projects
+    </h2>
+
+    <ul class="grid gap-4 max-w-4xl">
+      {others.map(project => (
+        <li class="group flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg hover:bg-white dark:hover:bg-(--color-surface-muted-dark) border border-transparent hover:border-(--color-border) dark:hover:border-(--color-border-dark) hover:shadow-sm transition-all">
+          <div class="mb-2 sm:mb-0">
+            <h3 class="font-bold text-lg text-(--color-text-main)">
+              {project.title}
+            </h3>
+            <p class="text-sm text-(--color-text-muted)">
+              {project.summary}
+            </p>
+          </div>
+
+          <a
+            href={`/projects/${project.id}`}
+            class="text-sm font-medium text-(--color-brand) group-hover:underline whitespace-nowrap"
+          >
+            View project →
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
