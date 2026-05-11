@@ -1,4 +1,7 @@
+import type { ImageMetadata } from "astro";
+
 export type ProjectType = "featured" | "other";
+export type PortfolioImage = ImageMetadata | string;
 
 export type ProjectSEO = {
   title?: string;
@@ -21,7 +24,7 @@ export type Project = {
   type: "featured" | "other";
 
   stack: string[];
-  image: string;
+  image: PortfolioImage;
 
   client?: string;
   year?: number;

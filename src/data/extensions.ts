@@ -1,3 +1,13 @@
+import type { ImageMetadata } from "astro";
+import betterImagesScreenshot1 from "../assets/images/extensions/betterImages/1.png";
+import betterImagesScreenshot2 from "../assets/images/extensions/betterImages/2.png";
+import betterImagesIcon from "../assets/images/extensions/betterImages/icon.png";
+import devTrackerScreenshot1 from "../assets/images/extensions/dev-tracker/1.png";
+import devTrackerScreenshot2 from "../assets/images/extensions/dev-tracker/2.png";
+import devTrackerIcon from "../assets/images/extensions/dev-tracker/icon.png";
+
+export type PortfolioImage = ImageMetadata | string;
+
 export type Extension = {
   id: string;
   name: string;
@@ -6,8 +16,8 @@ export type Extension = {
   marketplaceUrl: string;
   repoUrl?: string;
 
-  icon: string;
-  screenshots?: string[];
+  icon: PortfolioImage;
+  screenshots?: PortfolioImage[];
 
   tags: string[];
   translations?: {
@@ -27,11 +37,8 @@ export const extensions: Extension[] = [
       "https://marketplace.visualstudio.com/items?itemName=DevBySergio.DevTrackerBySergio",
     repoUrl: "https://github.com/DevBySergio/DevTracker_by_Sergio",
 
-    icon: "/images/extensions/dev-tracker/icon.png",
-    screenshots: [
-      "/images/extensions/dev-tracker/1.png",
-      "/images/extensions/dev-tracker/2.png",
-    ],
+    icon: devTrackerIcon,
+    screenshots: [devTrackerScreenshot1, devTrackerScreenshot2],
 
     tags: ["VS Code", "Productivity", "Metrics"],
     translations: {
@@ -51,11 +58,8 @@ export const extensions: Extension[] = [
       "https://marketplace.visualstudio.com/items?itemName=DevBySergio.betterimages",
     repoUrl: "https://github.com/DevBySergio/BetterImages_by_Sergio",
 
-    icon: "/images/extensions/betterImages/icon.png",
-    screenshots: [
-      "/images/extensions/betterImages/1.png",
-      "/images/extensions/betterImages/2.png",
-    ],
+    icon: betterImagesIcon,
+    screenshots: [betterImagesScreenshot1, betterImagesScreenshot2],
 
     tags: ["VS Code", "Productivity", "Images"],
     translations: {

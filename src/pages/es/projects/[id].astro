@@ -1,6 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getProjects } from "../../../data/projects";
+import type { PortfolioImage } from "../../../data/projects";
+
+const isOptimizedImage = (image: PortfolioImage): image is ImageMetadata =>
+  typeof image !== "string";
 
 // 1. Generar rutas estáticas
 export function getStaticPaths() {
@@ -17,7 +22,9 @@ const { project } = Astro.props;
 const seo = {
   title: project.seo?.title ?? project.title,
   description: project.seo?.description ?? project.summary,
-  image: project.seo?.image ?? project.image,
+  image: project.seo?.image ?? (
+    typeof project.image === "string" ? project.image : project.image.src
+  ),
   url: `https://devbysergio.com/es/projects/${project.id}`,
 };
 ---
@@ -36,11 +43,21 @@ const seo = {
 
   <!-- Image -->
   <section class="pb-20">
-    <img
-      src={project.image}
-      alt={`Vista previa de ${project.title}`}
-      class="rounded w-full max-w-4xl"
-    />
+    {isOptimizedImage(project.image) ? (
+      <Image
+        src={project.image}
+        alt={`Vista previa de ${project.title}`}
+        class="rounded w-full max-w-4xl"
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1024px) 896px, 100vw"
+      />
+    ) : (
+      <img
+        src={project.image}
+        alt={`Vista previa de ${project.title}`}
+        class="rounded w-full max-w-4xl"
+      />
+    )}
   </section>
 
   <!-- Content -->

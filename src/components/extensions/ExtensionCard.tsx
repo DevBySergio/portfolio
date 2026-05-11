@@ -11,6 +11,9 @@ export default function ExtensionCard({
   onClick,
   detailsLabel,
 }: Props) {
+  const iconSrc =
+    typeof extension.icon === "string" ? extension.icon : extension.icon.src;
+
   return (
     <button
       onClick={onClick}
@@ -38,7 +41,7 @@ export default function ExtensionCard({
     >
       <div className="flex items-start justify-between w-full mb-4">
         <div className="p-2.5 rounded-xl bg-(--color-surface-muted) dark:bg-(--color-surface-muted-dark) group-hover:bg-white dark:group-hover:bg-black/20 transition-colors border border-transparent group-hover:border-(--color-border)">
-          <img src={extension.icon} alt="" className="w-8 h-8 object-contain" />
+          <img src={iconSrc} alt="" className="w-8 h-8 object-contain" />
         </div>
 
         {/* Icono flecha sutil al hover */}

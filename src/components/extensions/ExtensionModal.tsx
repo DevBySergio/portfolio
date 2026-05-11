@@ -13,6 +13,9 @@ type Props = {
 };
 
 export default function ExtensionModal({ extension, onClose, labels }: Props) {
+  const iconSrc =
+    typeof extension.icon === "string" ? extension.icon : extension.icon.src;
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -61,7 +64,7 @@ export default function ExtensionModal({ extension, onClose, labels }: Props) {
           <div className="flex gap-4">
             <div className="shrink-0 p-3 rounded-xl bg-(--color-surface-muted) dark:bg-(--color-surface-muted-dark) border border-(--color-border) dark:border-(--color-border-dark)">
               <img
-                src={extension.icon}
+                src={iconSrc}
                 alt=""
                 className="w-10 h-10 object-contain"
               />
@@ -151,19 +154,24 @@ export default function ExtensionModal({ extension, onClose, labels }: Props) {
                 {labels.screenshots}
               </h4>
               <div className="grid grid-cols-1 gap-6">
-                {extension.screenshots.map((src, idx) => (
+                {extension.screenshots.map((screenshot, idx) => {
+                  const screenshotSrc =
+                    typeof screenshot === "string" ? screenshot : screenshot.src;
+
+                  return (
                   <div
                     key={idx}
                     className="overflow-hidden rounded-xl border border-(--color-border) dark:border-(--color-border-dark) shadow-sm bg-(--color-surface-muted)"
                   >
                     <img
-                      src={src}
+                      src={screenshotSrc}
                       alt={`${extension.name} screenshot ${idx + 1}`}
                       className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-500"
                       loading="lazy"
                     />
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
