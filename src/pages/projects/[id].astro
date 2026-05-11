@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { projects } from '../../data/projects';
+import { getProjects } from '../../data/projects';
 
 // 1. Generar rutas estáticas
 export function getStaticPaths() {
+  const projects = getProjects('en');
   return projects.map(project => ({
     params: { id: project.id },
     props: { project },
@@ -38,7 +39,7 @@ const seo = {
   <section class="pb-20">
     <img
       src={project.image}
-      alt=""
+      alt={`${project.title} preview`}
       class="rounded w-full max-w-4xl"
     />
   </section>

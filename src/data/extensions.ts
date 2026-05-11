@@ -10,6 +10,12 @@ export type Extension = {
   screenshots?: string[];
 
   tags: string[];
+  translations?: {
+    es?: {
+      description: string;
+      tags?: string[];
+    };
+  };
 };
 
 export const extensions: Extension[] = [
@@ -28,6 +34,13 @@ export const extensions: Extension[] = [
     ],
 
     tags: ["VS Code", "Productivity", "Metrics"],
+    translations: {
+      es: {
+        description:
+          "Panel profesional de analítica para desarrolladores.",
+        tags: ["VS Code", "Productividad", "Métricas"],
+      },
+    },
   },
   {
     id: "better-images",
@@ -45,6 +58,13 @@ export const extensions: Extension[] = [
     ],
 
     tags: ["VS Code", "Productivity", "Images"],
+    translations: {
+      es: {
+        description:
+          "Extensión de VS Code para editar, procesar y generar imágenes de muestra.",
+        tags: ["VS Code", "Productividad", "Imágenes"],
+      },
+    },
   },
   {
     id: "time-tracker-03",
@@ -62,6 +82,13 @@ export const extensions: Extension[] = [
     ],
 
     tags: ["VS Code", "Productivity", "TypeScript"],
+    translations: {
+      es: {
+        description:
+          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
+        tags: ["VS Code", "Productividad", "TypeScript"],
+      },
+    },
   },
   {
     id: "time-tracker-04",
@@ -79,6 +106,13 @@ export const extensions: Extension[] = [
     ],
 
     tags: ["VS Code", "Productivity", "TypeScript"],
+    translations: {
+      es: {
+        description:
+          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
+        tags: ["VS Code", "Productividad", "TypeScript"],
+      },
+    },
   },
   {
     id: "time-tracker-05",
@@ -96,5 +130,23 @@ export const extensions: Extension[] = [
     ],
 
     tags: ["VS Code", "Productivity", "TypeScript"],
+    translations: {
+      es: {
+        description:
+          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
+        tags: ["VS Code", "Productividad", "TypeScript"],
+      },
+    },
   },
 ];
+
+export const getExtensions = (lang: "en" | "es" = "en"): Extension[] => {
+  if (lang === "en") {
+    return extensions;
+  }
+
+  return extensions.map((extension) => ({
+    ...extension,
+    ...extension.translations?.[lang],
+  }));
+};

@@ -1,69 +1,70 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const seo = {
-  title: 'About – Sergio | Full-stack Developer',
+  title: 'Sobre mí – Sergio | Desarrollador Full-stack',
   description:
-    'Full-stack developer with experience in real-world projects, developer tooling and data-driven applications. Focused on scalable and maintainable solutions.',
-  url: 'https://devbysergio.com/about',
+    'Desarrollador full-stack con experiencia en proyectos reales, herramientas para desarrolladores y aplicaciones basadas en datos. Enfocado en soluciones escalables y mantenibles.',
+  url: 'https://devbysergio.com/es/about',
 };
 ---
 
-<BaseLayout title="DbS · About" seo={seo}>
+<BaseLayout title="DbS · Sobre mí" seo={seo}>
   <section class="py-24 max-w-3xl">
     <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-(--color-text-main)">
-      About me
+      Sobre mí
     </h1>
 
     <div class="space-y-6 text-lg text-(--color-text-muted) leading-relaxed">
         <p>
-        I’m a full-stack developer with experience building real-world
-        applications, internal tools, and developer-focused products.
-        My work is driven by a strong focus on solving concrete problems
-        with scalable and maintainable solutions.
+        Soy un desarrollador full-stack con experiencia creando aplicaciones
+        reales, herramientas internas y productos orientados a desarrolladores.
+        Mi trabajo se define por un fuerte enfoque en resolver problemas
+        concretos mediante soluciones escalables y mantenibles.
         </p>
 
         <p>
-        I enjoy working across the stack, from system design and backend
-        logic to clean, purposeful front-end interfaces.
+        Disfruto trabajando en todas las capas del stack, desde el diseño de
+        sistemas y la lógica de backend hasta interfaces frontend limpias y con
+        propósito.
         </p>
     </div>
   </section>
 
   <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark) max-w-3xl">
     <h2 class="text-2xl font-bold mb-8 text-(--color-text-main)">
-      How I work
+      Cómo trabajo
     </h2>
 
     <ul class="space-y-6">
       <li class="flex gap-4 items-start">
         <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
-        <span class="text-(--color-text-muted) text-lg">I focus on understanding the problem before choosing the technology.</span>
+        <span class="text-(--color-text-muted) text-lg">Me centro en entender el problema antes de elegir la tecnología.</span>
       </li>
       <li class="flex gap-4 items-start">
         <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
-        <span class="text-(--color-text-muted) text-lg">I value clarity, maintainability and long-term impact over short-term hacks.</span>
+        <span class="text-(--color-text-muted) text-lg">Valoro la claridad, la mantenibilidad y el impacto a largo plazo por encima de soluciones rápidas.</span>
       </li>
       <li class="flex gap-4 items-start">
         <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
-        <span class="text-(--color-text-muted) text-lg">I enjoy improving workflows and building tools that make developers more productive.</span>
+        <span class="text-(--color-text-muted) text-lg">Disfruto mejorando flujos de trabajo y creando herramientas que hacen más productivos a los desarrolladores.</span>
       </li>
       <li class="flex gap-4 items-start">
         <span class="mt-2 w-1.5 h-1.5 rounded-full bg-(--color-brand) shrink-0"></span>
-        <span class="text-(--color-text-muted) text-lg">I’m comfortable working autonomously while aligning with team and business goals.</span>
+        <span class="text-(--color-text-muted) text-lg">Me siento cómodo trabajando de forma autónoma y alineado con objetivos de equipo y negocio.</span>
       </li>
     </ul>
   </section>
 
   <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark)">
     <h2 class="text-2xl font-bold mb-10 text-(--color-text-main)">
-      Technical focus
+      Enfoque técnico
     </h2>
 
     <div class="grid md:grid-cols-2 gap-12">
       <div class="p-8 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-(--color-border-dark) shadow-sm dark:shadow-none">
         <h3 class="font-bold text-lg mb-6 text-(--color-text-main) flex items-center gap-2">
-            Core stack
+            Stack principal
         </h3>
         <ul class="space-y-4 text-(--color-text-muted)">
           <li class="flex items-center gap-3">
@@ -87,24 +88,24 @@ const seo = {
 
       <div class="p-8 rounded-2xl bg-white dark:bg-(--color-surface-dark) border border-(--color-border) dark:border-(--color-border-dark) shadow-sm dark:shadow-none">
         <h3 class="font-bold text-lg mb-6 text-(--color-text-main)">
-          Additional experience
+          Experiencia adicional
         </h3>
         <ul class="space-y-4 text-(--color-text-muted)">
           <li class="flex items-center gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
-            Developer tooling (VS Code extensions)
+            Herramientas para desarrolladores (extensiones de VS Code)
           </li>
           <li class="flex items-center gap-3">
              <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
-            Data-driven and AI-related projects
+            Proyectos basados en datos y relacionados con IA
           </li>
           <li class="flex items-center gap-3">
              <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
-            Cloudflare & modern deployment
+            Cloudflare y despliegue moderno
           </li>
           <li class="flex items-center gap-3">
              <span class="w-1.5 h-1.5 rounded-full bg-(--color-text-muted)"></span>
-            Performance and DX-focused architectures
+            Arquitecturas centradas en rendimiento y DX
           </li>
         </ul>
       </div>
@@ -113,24 +114,24 @@ const seo = {
 
   <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark) max-w-3xl">
     <h2 class="text-2xl font-bold mb-6 text-(--color-text-main)">
-      What I’m looking for
+      Qué estoy buscando
     </h2>
 
     <p class="text-(--color-text-muted) mb-4 leading-relaxed">
-      I’m interested in working with teams that value engineering
-      quality, thoughtful system design and continuous improvement.
+      Me interesa trabajar con equipos que valoren la calidad de ingeniería,
+      el diseño cuidadoso de sistemas y la mejora continua.
     </p>
 
     <p class="text-(--color-text-muted) leading-relaxed">
-      I’m particularly motivated by environments where I can grow
-      towards a senior role, contribute to meaningful products, and
-      collaborate in an international context.
+      Me motivan especialmente los entornos donde pueda crecer hacia un rol
+      senior, contribuir a productos con sentido y colaborar en un contexto
+      internacional.
     </p>
   </section>
 
   <section class="py-20 border-t border-(--color-border) dark:border-(--color-border-dark)">
     <h2 class="text-2xl font-bold mb-8 text-(--color-text-main)">
-      Find me online
+      Encuéntrame online
     </h2>
 
     <ul class="flex flex-col sm:flex-row gap-6 text-base font-medium">

@@ -1,10 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ExtensionsCarousel from '../components/extensions/ExtensionsCarousel';
-import { projects } from '../data/projects';
+import { getProjects } from '../data/projects';
+import { useTranslations } from '../i18n/utils';
 
+const lang = 'en';
+const t = useTranslations(lang);
+const projects = getProjects(lang);
 const featured = projects.filter(p => p.type === 'featured');
 const others = projects.filter(p => p.type === 'other');
+const carouselLabels = {
+  scrollLeft: t('carousel.scrollLeft'),
+  scrollRight: t('carousel.scrollRight'),
+  details: 'View extension details',
+  close: t('modal.close'),
+  screenshots: t('modal.screenshots'),
+  viewCode: t('modal.viewCode'),
+  install: t('modal.install'),
+};
 ---
 
 <BaseLayout title="DbS · Projects">
@@ -24,7 +37,7 @@ const others = projects.filter(p => p.type === 'other');
         <h2 class="text-2xl font-bold text-(--color-text-main)">VS Code Extensions</h2>
         <p class="text-(--color-text-muted)">Tools to boost your productivity.</p>
     </div>
-    <ExtensionsCarousel client:load />
+    <ExtensionsCarousel lang={lang} labels={carouselLabels} client:load />
   </section>
 
   <section class="py-24 border-t border-(--color-border) dark:border-(--color-border-dark)">
@@ -47,7 +60,7 @@ const others = projects.filter(p => p.type === 'other');
           <div class="aspect-video w-full bg-(--color-surface-muted) dark:bg-(--color-surface-muted-dark) overflow-hidden border-b border-(--color-border) dark:border-transparent">
              <img
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} preview`}
                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
               />
           </div>

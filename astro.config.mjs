@@ -12,4 +12,12 @@ export default defineConfig({
 
   site: "https://devbysergio.com",
   integrations: [react(), sitemap()],
+
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

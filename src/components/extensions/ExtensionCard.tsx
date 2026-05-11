@@ -3,12 +3,18 @@ import type { Extension } from "../../data/extensions";
 type Props = {
   extension: Extension;
   onClick: () => void;
+  detailsLabel: string;
 };
 
-export default function ExtensionCard({ extension, onClick }: Props) {
+export default function ExtensionCard({
+  extension,
+  onClick,
+  detailsLabel,
+}: Props) {
   return (
     <button
       onClick={onClick}
+      aria-label={`${detailsLabel} ${extension.name}`}
       className="
         w-full h-full
         flex flex-col

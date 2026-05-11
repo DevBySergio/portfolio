@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getProjects } from "../data/projects";
-import { getLangFromUrl, localizedPath } from "../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getProjects } from "../../data/projects";
+import { localizedPath } from "../../i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = "es";
 const projects = getProjects(lang);
 const featured = projects.filter((p) => p.type === "featured");
 // 🟢 VARIABLE DE ESTADO: Cambia a false cuando encuentres trabajo
@@ -25,14 +25,15 @@ const isOpenToWork = true;
           <span
             class="block text-4xl md:text-5xl lg:text-4xl xl:text-5xl text-transparent bg-clip-text bg-linear-to-r from-(--color-brand) to-orange-400 mt-1 md:mt-2"
           >
-            Full-Stack Developer
+            Desarrollador Full-Stack
           </span>
         </h1>
       </div>
 
       <p class="max-w-xl text-xl text-(--color-text-muted) leading-relaxed">
-        I build scalable, high-performance web applications and developer tools,
-        committed to delivering exceptional developer experiences.
+        Desarrollo aplicaciones web y herramientas de alto rendimiento y
+        escalables, con el compromiso de ofrecer una experiencia de
+        desarrollador excepcional.
       </p>
 
       <div class="flex flex-wrap gap-4 mt-2">
@@ -42,7 +43,7 @@ const isOpenToWork = true;
                  bg-(--color-brand) hover:bg-(--color-brand-dark)
                  transition-colors shadow-sm"
         >
-          {lang === "es" ? "Ver proyectos" : "View Projects"}
+          Ver Proyectos
         </a>
 
         <a
@@ -54,7 +55,7 @@ const isOpenToWork = true;
                  hover:border-(--color-brand) dark:hover:border-(--color-brand)
                  transition-colors shadow-sm"
         >
-          {lang === "es" ? "Extensiones de VS Code" : "VS Code Extensions"}
+          Extensiones VS Code
         </a>
       </div>
     </div>
@@ -126,11 +127,11 @@ const isOpenToWork = true;
 
                   <span class="relative inline-block font-bold">
                     <span class="text-gray-400/50 dark:text-gray-500/50">
-                      'Open for new projects'
+                      'Abierto a nuevos proyectos'
                     </span>
 
                     <span class="absolute left-0 top-0 h-full overflow-hidden whitespace-nowrap text-green-700 dark:text-green-400 border-r-2 border-green-500 dark:border-green-400 animate-ide-typing">
-                      'Open for new projects'
+                      'Abierto a nuevos proyectos'
                     </span>
                   </span>
 
@@ -197,11 +198,11 @@ const isOpenToWork = true;
           </svg>
         </div>
         <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">
-          Product mindset
+          Mentalidad de producto
         </h3>
         <p class="text-(--color-text-muted)">
-          Experience building solutions for real clients, focusing on business
-          impact and usability.
+          Experiencia creando soluciones para clientes reales, con foco en el
+          impacto de negocio y la usabilidad.
         </p>
       </div>
 
@@ -227,11 +228,11 @@ const isOpenToWork = true;
           >
         </div>
         <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">
-          Developer tooling
+          Herramientas de desarrollo
         </h3>
         <p class="text-(--color-text-muted)">
-          VS Code extensions and internal tools that improve productivity and
-          developer workflows.
+          Extensiones de VS Code y herramientas internas que mejoran la
+          productividad y los flujos de trabajo.
         </p>
       </div>
 
@@ -256,10 +257,11 @@ const isOpenToWork = true;
           >
         </div>
         <h3 class="text-lg font-bold mb-2 text-(--color-text-main)">
-          Scalable architecture
+          Arquitectura escalable
         </h3>
         <p class="text-(--color-text-muted)">
-          Clean code, maintainable systems and pragmatic engineering decisions.
+          Código limpio, sistemas mantenibles y decisiones de ingeniería
+          pragmáticas.
         </p>
       </div>
     </div>
@@ -268,13 +270,13 @@ const isOpenToWork = true;
   <section class="py-12">
     <div class="flex items-end justify-between mb-8">
       <h2 class="text-3xl font-bold text-(--color-text-main)">
-        {lang === "es" ? "Proyectos destacados" : "Featured Projects"}
+        Proyectos destacados
       </h2>
       <a
         href={localizedPath(lang, "/projects")}
         class="hidden md:inline-block text-sm font-medium text-(--color-brand) hover:text-(--color-brand-dark) hover:underline"
       >
-        {lang === "es" ? "Ver todos los proyectos →" : "View all projects →"}
+        Ver todos los proyectos →
       </a>
     </div>
 
@@ -296,7 +298,7 @@ const isOpenToWork = true;
             </p>
             <div class="mt-auto">
               <span class="inline-flex items-center text-sm font-semibold text-(--color-brand)">
-                {lang === "es" ? "Ver proyecto " : "View project "}
+                Ver proyecto
                 <span class="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
                   →
                 </span>
@@ -305,7 +307,7 @@ const isOpenToWork = true;
             <a
               href={localizedPath(lang, `/projects/${project.id}`)}
               class="absolute inset-0 z-10"
-              aria-label={`View project ${project.title}`}
+              aria-label={`Ver proyecto ${project.title}`}
             />
           </article>
         ))
@@ -316,9 +318,7 @@ const isOpenToWork = true;
       <a
         href={localizedPath(lang, "/projects")}
         class="text-sm font-medium text-(--color-brand)"
-        >{
-          lang === "es" ? "Ver todos los proyectos →" : "View all projects →"
-        }</a
+        >Ver todos los proyectos →</a
       >
     </div>
   </section>
@@ -330,12 +330,13 @@ const isOpenToWork = true;
       class="bg-(--color-surface-muted) dark:bg-(--color-surface-dark) rounded-2xl p-8 md:p-12 text-center border border-(--color-border) dark:border-transparent"
     >
       <h2 class="text-3xl font-bold mb-4 text-(--color-text-main)">
-        Developer Tooling
+        Herramientas de Desarrollo
       </h2>
 
       <p class="max-w-xl mx-auto text-(--color-text-muted) mb-8">
-        A collection of VS Code extensions focused on solving real development
-        problems and improving daily workflows.
+        Una colección de extensiones para VS Code enfocadas en resolver
+        problemas reales de desarrollo y optimizar los flujos de trabajo
+        diarios.
       </p>
 
       <a
@@ -344,7 +345,7 @@ const isOpenToWork = true;
                 bg-(--color-brand) text-white
                 hover:bg-(--color-brand-dark) transition-colors"
       >
-        {lang === "es" ? "Explorar extensiones" : "Explore extensions"}
+        Ver extensiones
       </a>
     </div>
   </section>

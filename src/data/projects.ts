@@ -6,6 +6,13 @@ export type ProjectSEO = {
   image?: string;
 };
 
+type LocalizedProjectFields = Pick<
+  Project,
+  "title" | "summary" | "description"
+> & {
+  seo?: ProjectSEO;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -23,6 +30,9 @@ export type Project = {
   github?: string;
 
   seo?: ProjectSEO;
+  translations?: {
+    es?: LocalizedProjectFields;
+  };
 };
 
 export const projects: Project[] = [
@@ -43,6 +53,20 @@ export const projects: Project[] = [
         "Case study of a real-world full-stack application focused on performance and scalability.",
       image: "/images/projects/client-a-og.png",
     },
+    translations: {
+      es: {
+        title: "Proyecto de cliente A",
+        summary: "Aplicación web full-stack para un cliente real.",
+        description:
+          "Una solución full-stack escalable creada para un cliente real...",
+        seo: {
+          title: "Proyecto de cliente A – Aplicación web full-stack",
+          description:
+            "Caso de estudio de una aplicación full-stack real centrada en rendimiento y escalabilidad.",
+          image: "/images/projects/client-a-og.png",
+        },
+      },
+    },
   },
   {
     id: "client-project-b",
@@ -56,6 +80,14 @@ export const projects: Project[] = [
     image: "/images/projects/client-b.png",
 
     year: 2023,
+    translations: {
+      es: {
+        title: "Proyecto de cliente B",
+        summary: "Plataforma web escalable orientada a producto.",
+        description:
+          "Una plataforma lista para producción, creada para gestionar flujos de trabajo complejos y restricciones reales.",
+      },
+    },
   },
   // Estos proyectos son los secundarios
   {
@@ -68,6 +100,14 @@ export const projects: Project[] = [
 
     stack: ["TypeScript", "Node.js"],
     image: "/images/projects/internal-tool.png",
+    translations: {
+      es: {
+        title: "Herramienta interna",
+        summary: "Pequeña herramienta interna de productividad.",
+        description:
+          "Una herramienta interna ligera creada para automatizar tareas repetitivas y mejorar la eficiencia del equipo.",
+      },
+    },
   },
   {
     id: "internal-tool-2",
@@ -79,5 +119,28 @@ export const projects: Project[] = [
 
     stack: ["TypeScript", "Node.js"],
     image: "/images/projects/internal-tool.png",
+    translations: {
+      es: {
+        title: "Herramienta interna 2",
+        summary: "Pequeña herramienta interna de productividad.",
+        description:
+          "Una herramienta interna ligera creada para automatizar tareas repetitivas y mejorar la eficiencia del equipo.",
+      },
+    },
   },
 ];
+
+export const getProjects = (lang: "en" | "es" = "en"): Project[] => {
+  if (lang === "en") {
+    return projects;
+  }
+
+  return projects.map((project) => ({
+    ...project,
+    ...project.translations?.[lang],
+    seo: {
+      ...project.seo,
+      ...project.translations?.[lang]?.seo,
+    },
+  }));
+};

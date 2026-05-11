@@ -1,12 +1,36 @@
 import { useRef, useState } from "react";
-import { extensions } from "../../data/extensions";
+import { getExtensions } from "../../data/extensions";
 import ExtensionCard from "./ExtensionCard";
 import ExtensionModal from "./ExtensionModal";
 import type { Extension } from "../../data/extensions";
+import type { Language } from "../../i18n/ui";
 
-export default function ExtensionsCarousel() {
+type Props = {
+  lang?: Language;
+  labels?: {
+    scrollLeft: string;
+    scrollRight: string;
+    details: string;
+    close: string;
+    screenshots: string;
+    viewCode: string;
+    install: string;
+  };
+};
+
+export default function ExtensionsCarousel({ lang = "en", labels }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<Extension | null>(null);
+  const extensions = getExtensions(lang);
+  const text = labels ?? {
+    scrollLeft: "Scroll left",
+    scrollRight: "Scroll right",
+    details: "View extension details",
+    close: "Close",
+    screenshots: "Screenshots",
+    viewCode: "View code",
+    install: "Install",
+  };
 
   const scroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
@@ -39,7 +63,7 @@ export default function ExtensionsCarousel() {
               hover:text-(--color-brand) hover:border-(--color-brand)
               transition-all hover:scale-105 active:scale-95
             "
-            aria-label="Scroll left"
+            aria-label={text.scrollLeft}
           >
             ←
           </button>
@@ -55,7 +79,7 @@ export default function ExtensionsCarousel() {
               hover:text-(--color-brand) hover:border-(--color-brand)
               transition-all hover:scale-105 active:scale-95
             "
-            aria-label="Scroll right"
+            aria-label={text.scrollRight}
           >
             →
           </button>
@@ -92,7 +116,11 @@ export default function ExtensionsCarousel() {
               key={ext.id}
               className="shrink-0 w-[280px] md:w-[320px] snap-start h-auto"
             >
-              <ExtensionCard extension={ext} onClick={() => setActive(ext)} />
+              <ExtensionCard
+                extension={ext}
+                onClick={() => setActive(ext)}
+                detailsLabel={text.details}
+              />
             </div>
           ))}
 
@@ -102,7 +130,11 @@ export default function ExtensionsCarousel() {
       </div>
 
       {active && (
-        <ExtensionModal extension={active} onClose={() => setActive(null)} />
+        <ExtensionModal
+          extension={active}
+          onClose={() => setActive(null)}
+          labels={text}
+        />
       )}
     </>
   );

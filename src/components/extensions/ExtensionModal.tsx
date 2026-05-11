@@ -4,15 +4,29 @@ import type { Extension } from "../../data/extensions";
 type Props = {
   extension: Extension;
   onClose: () => void;
+  labels: {
+    close: string;
+    screenshots: string;
+    viewCode: string;
+    install: string;
+  };
 };
 
-export default function ExtensionModal({ extension, onClose }: Props) {
+export default function ExtensionModal({ extension, onClose, labels }: Props) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "auto";
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [onClose]);
 
   return (
     <div
@@ -24,6 +38,9 @@ export default function ExtensionModal({ extension, onClose }: Props) {
         animate-modal-overlay
       "
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="extension-modal-title"
     >
       <div
         className="
@@ -50,7 +67,10 @@ export default function ExtensionModal({ extension, onClose }: Props) {
               />
             </div>
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-(--color-text-main) leading-tight">
+              <h3
+                id="extension-modal-title"
+                className="text-xl md:text-2xl font-bold text-(--color-text-main) leading-tight"
+              >
                 {extension.name}
               </h3>
 
@@ -83,7 +103,7 @@ export default function ExtensionModal({ extension, onClose }: Props) {
               dark:hover:bg-(--color-surface-muted-dark)
               transition-colors
             "
-            aria-label="Cerrar modal"
+            aria-label={labels.close}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +148,7 @@ export default function ExtensionModal({ extension, onClose }: Props) {
                   <line x1="8" y1="21" x2="16" y2="21" />
                   <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
-                Capturas de pantalla
+                {labels.screenshots}
               </h4>
               <div className="grid grid-cols-1 gap-6">
                 {extension.screenshots.map((src, idx) => (
@@ -155,7 +175,7 @@ export default function ExtensionModal({ extension, onClose }: Props) {
             onClick={onClose}
             className="px-5 py-2.5 rounded-lg text-sm font-medium text-(--color-text-muted) hover:text-(--color-text-main) hover:bg-(--color-surface-muted) transition-colors"
           >
-            Cerrar
+            {labels.close}
           </button>
 
           {/* BOTÓN REPO GITHUB (Solo si existe repoUrl) */}
@@ -187,7 +207,7 @@ export default function ExtensionModal({ extension, onClose }: Props) {
               >
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
-              Ver Código
+              {labels.viewCode}
             </a>
           )}
 
@@ -205,7 +225,7 @@ export default function ExtensionModal({ extension, onClose }: Props) {
               transition-all
             "
           >
-            <span>Instalar</span>
+            <span>{labels.install}</span>
             <svg
               width="16"
               height="16"

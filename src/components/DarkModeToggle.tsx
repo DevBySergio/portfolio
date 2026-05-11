@@ -2,8 +2,21 @@ import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
-export default function DarkModeToggle() {
+type Props = {
+  labels?: {
+    light: string;
+    dark: string;
+    toggle: string;
+  };
+};
+
+export default function DarkModeToggle({ labels }: Props) {
   const [theme, setTheme] = useState<Theme>("light");
+  const text = labels ?? {
+    light: "Light mode",
+    dark: "Dark mode",
+    toggle: "Toggle dark mode",
+  };
 
   // Detect initial theme
   useEffect(() => {
@@ -32,7 +45,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      aria-label="Toggle dark mode"
+      aria-label={text.toggle}
       className="
         text-sm
         px-3 py-2
@@ -43,7 +56,7 @@ export default function DarkModeToggle() {
         transition
       "
     >
-      {theme === "dark" ? "Light mode" : "Dark mode"}
+      {theme === "dark" ? text.light : text.dark}
     </button>
   );
 }
