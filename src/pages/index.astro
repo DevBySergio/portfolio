@@ -38,8 +38,8 @@ const isOpenToWork = true;
       <div class="flex flex-wrap gap-4 mt-2">
         <a
           href={localizedPath(lang, "/projects")}
-          class="px-8 py-3.5 rounded-lg font-semibold text-white
-                 bg-(--color-brand) hover:bg-(--color-brand-dark)
+          class="px-8 py-3.5 rounded-lg font-semibold text-gray-900
+                 bg-(--color-brand) hover:bg-(--color-brand-dark) hover:text-white
                  transition-colors shadow-sm"
         >
           {lang === "es" ? "Ver proyectos" : "View Projects"}
@@ -341,8 +341,8 @@ const isOpenToWork = true;
       <a
         href={localizedPath(lang, "/projects#extensions")}
         class="inline-block px-6 py-3 rounded-lg text-sm font-medium
-                bg-(--color-brand) text-white
-                hover:bg-(--color-brand-dark) transition-colors"
+         bg-(--color-brand) text-gray-900
+         hover:bg-(--color-brand-dark) hover:text-white transition-colors"
       >
         {lang === "es" ? "Explorar extensiones" : "Explore extensions"}
       </a>
