@@ -5,6 +5,12 @@ import betterImagesIcon from "../assets/images/extensions/betterImages/icon.png"
 import devTrackerScreenshot1 from "../assets/images/extensions/dev-tracker/1.png";
 import devTrackerScreenshot2 from "../assets/images/extensions/dev-tracker/2.png";
 import devTrackerIcon from "../assets/images/extensions/dev-tracker/icon.png";
+import justapiScreenshot1 from "../assets/images/extensions/justapi/1.png";
+import justapiScreenshot2 from "../assets/images/extensions/justapi/2.png";
+import justapiIcon from "../assets/images/extensions/justapi/icon.png";
+import lynvoScreenshot1 from "../assets/images/extensions/lynvo/1.png";
+import lynvoScreenshot2 from "../assets/images/extensions/lynvo/2.png";
+import lynvoIcon from "../assets/images/extensions/lynvo/icon.png";
 
 export type PortfolioImage = ImageMetadata | string;
 
@@ -71,74 +77,44 @@ export const extensions: Extension[] = [
     },
   },
   {
-    id: "time-tracker-03",
-    name: "Time Tracker 3",
+    id: "justapi",
+    name: "JustAPI",
     description:
-      "VS Code extension to track coding time, projects and productivity metrics.",
+      "JustAPI is a local-first API client built directly into VS Code. Design, test, and debug HTTP requests with a full-featured interface — collections, variables, auth, response viewer, history, and code generation — all without sending your data anywhere.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/publishers/DevBySergio",
-    repoUrl: "https://github.com/DevBySergio",
+      "https://marketplace.visualstudio.com/items?itemName=DevBySergio.justapi",
+    repoUrl: "https://github.com/DevBySergio/JustAPI_by_Sergio",
 
-    icon: "/images/extensions/time-tracker/icon.png",
-    screenshots: [
-      "/images/extensions/time-tracker/1.png",
-      "/images/extensions/time-tracker/2.png",
-    ],
+    icon: justapiIcon,
+    screenshots: [justapiScreenshot1, justapiScreenshot2],
 
-    tags: ["VS Code", "Productivity", "TypeScript"],
+    tags: ["VS Code", "API Client", "HTTP", "Productivity"],
     translations: {
       es: {
         description:
-          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
-        tags: ["VS Code", "Productividad", "TypeScript"],
+          "JustAPI es un cliente de APIs local integrado directamente en VS Code. Diseña, prueba y depura peticiones HTTP con una interfaz completa — colecciones, variables, autenticación, visor de respuestas, historial y generación de código — todo sin que tus datos salgan de tu máquina.",
+        tags: ["VS Code", "Cliente API", "HTTP", "Productividad"],
       },
     },
   },
   {
-    id: "time-tracker-04",
-    name: "Time Tracker 4",
+    id: "lynvo",
+    name: "Lynvo",
     description:
-      "VS Code extension to track coding time, projects and productivity metrics.",
+      "Lynvo transforms VS Code into a local-first Kanban board with code-linked tasks, Git-backed team sync, and AI agent integration. Manage your entire project without leaving your editor — no servers, no sign-ups, no vendor lock-in.",
     marketplaceUrl:
-      "https://marketplace.visualstudio.com/publishers/DevBySergio",
-    repoUrl: "https://github.com/DevBySergio",
+      "https://marketplace.visualstudio.com/items?itemName=DevBySergio.lynvo",
+    repoUrl: "https://github.com/DevBySergio/Lynvo_by_Sergio",
 
-    icon: "/images/extensions/time-tracker/icon.png",
-    screenshots: [
-      "/images/extensions/time-tracker/1.png",
-      "/images/extensions/time-tracker/2.png",
-    ],
+    icon: lynvoIcon,
+    screenshots: [lynvoScreenshot1, lynvoScreenshot2],
 
-    tags: ["VS Code", "Productivity", "TypeScript"],
+    tags: ["VS Code", "Kanban", "Project Management", "AI"],
     translations: {
       es: {
         description:
-          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
-        tags: ["VS Code", "Productividad", "TypeScript"],
-      },
-    },
-  },
-  {
-    id: "time-tracker-05",
-    name: "Time Tracker 5",
-    description:
-      "VS Code extension to track coding time, projects and productivity metrics.",
-    marketplaceUrl:
-      "https://marketplace.visualstudio.com/publishers/DevBySergio",
-    repoUrl: "https://github.com/DevBySergio",
-
-    icon: "/images/extensions/time-tracker/icon.png",
-    screenshots: [
-      "/images/extensions/time-tracker/1.png",
-      "/images/extensions/time-tracker/2.png",
-    ],
-
-    tags: ["VS Code", "Productivity", "TypeScript"],
-    translations: {
-      es: {
-        description:
-          "Extensión de VS Code para medir tiempo de programación, proyectos y métricas de productividad.",
-        tags: ["VS Code", "Productividad", "TypeScript"],
+          "Lynvo convierte VS Code en un tablero Kanban local-first con tareas vinculadas al código, sincronización en equipo vía Git e integración con agentes de IA. Gestiona todo tu proyecto sin salir del editor — sin servidores, sin registro, sin dependencia externa.",
+        tags: ["VS Code", "Kanban", "Gestión de Proyectos", "IA"],
       },
     },
   },
