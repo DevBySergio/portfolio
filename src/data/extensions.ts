@@ -11,6 +11,9 @@ import justapiIcon from "../assets/images/extensions/justapi/icon.png";
 import lynvoScreenshot1 from "../assets/images/extensions/lynvo/1.png";
 import lynvoScreenshot2 from "../assets/images/extensions/lynvo/2.png";
 import lynvoIcon from "../assets/images/extensions/lynvo/icon.png";
+import bootframeScreenshot1 from "../assets/images/extensions/bootframe/1.png";
+import bootframeScreenshot2 from "../assets/images/extensions/bootframe/2.png";
+import bootframeIcon from "../assets/images/extensions/bootframe/icon.png";
 
 export type PortfolioImage = ImageMetadata | string;
 
@@ -49,8 +52,7 @@ export const extensions: Extension[] = [
     tags: ["VS Code", "Productivity", "Metrics"],
     translations: {
       es: {
-        description:
-          "Panel profesional de analítica para desarrolladores.",
+        description: "Panel profesional de analítica para desarrolladores.",
         tags: ["VS Code", "Productividad", "Métricas"],
       },
     },
@@ -115,6 +117,27 @@ export const extensions: Extension[] = [
         description:
           "Lynvo convierte VS Code en un tablero Kanban local-first con tareas vinculadas al código, sincronización en equipo vía Git e integración con agentes de IA. Gestiona todo tu proyecto sin salir del editor — sin servidores, sin registro, sin dependencia externa.",
         tags: ["VS Code", "Kanban", "Gestión de Proyectos", "IA"],
+      },
+    },
+  },
+  {
+    id: "bootframe",
+    name: "BootFrame",
+    description:
+      "Visual Bootstrap layout builder for VS Code. Compose responsive HTML structures visually with a 12-column grid system, column resizing, drag reordering, and live preview. Supports Bootstrap 4 and 5 — no more hand-writing every container, row, and col combination.",
+    marketplaceUrl:
+      "https://marketplace.visualstudio.com/items?itemName=DevBySergio.bootframe",
+    repoUrl: "https://github.com/DevBySergio/bootframe",
+
+    icon: bootframeIcon,
+    screenshots: [bootframeScreenshot1, bootframeScreenshot2],
+
+    tags: ["VS Code", "Bootstrap", "Layout Builder", "Snippets"],
+    translations: {
+      es: {
+        description:
+          "Constructor visual de layouts Bootstrap para VS Code. Compone estructuras HTML responsivas visualmente con sistema de rejilla de 12 columnas, redimensionamiento de columnas, reorganización por arrastre y vista previa en vivo. Soporta Bootstrap 4 y 5 — olvídate de escribir cada combinación de container, row y col a mano.",
+        tags: ["VS Code", "Bootstrap", "Constructor de Layouts", "Snippets"],
       },
     },
   },
