@@ -14,6 +14,9 @@ import lynvoIcon from "../assets/images/extensions/lynvo/icon.png";
 import bootframeScreenshot1 from "../assets/images/extensions/bootframe/1.png";
 import bootframeScreenshot2 from "../assets/images/extensions/bootframe/2.png";
 import bootframeIcon from "../assets/images/extensions/bootframe/icon.png";
+import pinakeScreenshot1 from "../assets/images/extensions/pinake/1.png";
+import pinakeScreenshot2 from "../assets/images/extensions/pinake/2.png";
+import pinakeIcon from "../assets/images/extensions/pinake/icon.png";
 
 export type PortfolioImage = ImageMetadata | string;
 
@@ -138,6 +141,27 @@ export const extensions: Extension[] = [
         description:
           "Constructor visual de layouts Bootstrap para VS Code. Compone estructuras HTML responsivas visualmente con sistema de rejilla de 12 columnas, redimensionamiento de columnas, reorganización por arrastre y vista previa en vivo. Soporta Bootstrap 4 y 5 — olvídate de escribir cada combinación de container, row y col a mano.",
         tags: ["VS Code", "Bootstrap", "Constructor de Layouts", "Snippets"],
+      },
+    },
+  },
+  {
+    id: "pinake",
+    name: "Pinake",
+    description:
+      "Pinake is a local-first documentation manager built into VS Code. Create, organize, search, validate, import, and export Markdown project documentation, with reusable templates, CI validation, and Codex agent integration — all without sending project knowledge outside your workspace.",
+    marketplaceUrl:
+      "https://marketplace.visualstudio.com/items?itemName=DevBySergio.pinakes",
+    repoUrl: "https://github.com/DevBySergio/pinakes",
+
+    icon: pinakeIcon,
+    screenshots: [pinakeScreenshot1, pinakeScreenshot2],
+
+    tags: ["VS Code", "Documentation", "Local-first", "AI"],
+    translations: {
+      es: {
+        description:
+          "Pinake es un gestor de documentación local-first integrado en VS Code. Crea, organiza, busca, valida, importa y exporta documentación de proyectos en Markdown, con plantillas reutilizables, validación en CI e integración con agentes de Codex, sin que el conocimiento del proyecto salga de tu workspace.",
+        tags: ["VS Code", "Documentación", "Local-first", "IA"],
       },
     },
   },
