@@ -1,0 +1,857 @@
+---
+import { getAboutContent } from "../../data/about";
+import type { Language } from "../../i18n/ui";
+import { localizedPath } from "../../i18n/utils";
+
+type Props = {
+  lang: Language;
+};
+
+const { lang } = Astro.props;
+const content = getAboutContent(lang);
+const extensionsHref = `${localizedPath(lang, "/projects")}#extensions`;
+const disclosureLabels =
+  lang === "es"
+    ? { close: "Ocultar", open: "Ver tecnologías" }
+    : { close: "Hide", open: "View technologies" };
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/DevBySergio",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/sergio-del-cerro-32405238a/",
+  },
+  {
+    label: "VS Code Marketplace",
+    href: "https://marketplace.visualstudio.com/publishers/DevBySergio",
+  },
+];
+---
+
+<div class="about-page pb-24 md:pb-32">
+  <section
+    class="relative py-20 md:py-28 overflow-hidden"
+    aria-labelledby="about-title"
+  >
+    <div
+      class="absolute inset-x-0 top-0 -z-10 h-96 opacity-80"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute -top-24 right-0 h-72 w-72 rounded-full bg-(--color-brand)/10 blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute top-20 right-1/3 h-40 w-40 rounded-full bg-orange-300/10 blur-3xl"
+      >
+      </div>
+    </div>
+
+    <div
+      class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(19rem,0.8fr)] lg:gap-16"
+    >
+      <div class="reveal max-w-4xl">
+        <p
+          class="mb-5 inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-(--color-brand)"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-(--color-brand)"
+            aria-hidden="true"
+          ></span>
+          {content.hero.eyebrow}
+        </p>
+
+        <h1
+          id="about-title"
+          class="max-w-4xl text-4xl font-extrabold leading-[1.08] tracking-tight text-(--color-text-main) sm:text-5xl md:text-6xl"
+        >
+          {content.hero.title}
+        </h1>
+
+        <div
+          class="mt-8 max-w-3xl space-y-4 text-lg leading-relaxed text-(--color-text-muted) md:text-xl"
+        >
+          <p>{content.hero.intro}</p>
+          <p>{content.hero.supporting}</p>
+        </div>
+      </div>
+
+      <aside
+        class="profile-card reveal relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface) p-7 shadow-xl shadow-black/5 md:p-9"
+        style="--delay: 120ms"
+        aria-label={content.hero.snapshotLabel}
+      >
+        <span
+          class="absolute -right-4 -top-12 select-none text-[10rem] font-black leading-none text-(--color-brand)/6"
+          aria-hidden="true"
+        >
+          01
+        </span>
+        <p
+          class="relative text-xs font-bold uppercase tracking-[0.2em] text-(--color-brand)"
+        >
+          {content.hero.snapshotLabel}
+        </p>
+        <p
+          class="relative mt-5 text-2xl font-bold leading-snug text-(--color-text-main)"
+        >
+          {content.hero.snapshotTitle}
+        </p>
+        <ul class="relative mt-8 space-y-4">
+          {
+            content.hero.snapshotItems.map((item) => (
+              <li class="flex items-start gap-3 text-(--color-text-muted)">
+                <span
+                  class="mt-2 h-2 w-2 shrink-0 rounded-full bg-(--color-brand)"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <dl class="grid gap-4 pb-20 sm:grid-cols-3 md:pb-28">
+    {
+      content.workHighlights.map((stat, index) => (
+        <div
+          class="metric-card reveal rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 shadow-sm"
+          style={`--delay: ${180 + index * 70}ms`}
+        >
+          <dt class="text-sm leading-relaxed text-(--color-text-muted)">
+            {stat.label}
+          </dt>
+          <dd class="mt-3 text-3xl font-extrabold tracking-tight text-(--color-text-main) md:text-4xl">
+            {stat.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <section
+    class="border-t border-(--color-border) py-20 md:py-28"
+    aria-labelledby="experience-title"
+  >
+    <div
+      class="mb-14 grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(20rem,0.7fr)] lg:items-end lg:gap-16"
+    >
+      <div>
+        <p class="section-eyebrow">{content.experience.eyebrow}</p>
+        <h2 id="experience-title" class="section-title">
+          {content.experience.title}
+        </h2>
+      </div>
+      <p class="text-lg leading-relaxed text-(--color-text-muted)">
+        {content.experience.intro}
+      </p>
+    </div>
+
+    <ol class="timeline">
+      {
+        content.experience.items.map((item) => (
+          <li class="timeline-item">
+            <span class="timeline-marker" aria-hidden="true" />
+            <p class="timeline-period">{item.period}</p>
+            <article class="interactive-card rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 shadow-sm md:p-8">
+              <p class="text-sm font-bold uppercase tracking-[0.16em] text-(--color-brand)">
+                {item.company}
+              </p>
+              <h3 class="mt-2 text-xl font-bold text-(--color-text-main) md:text-2xl">
+                {item.role}
+              </h3>
+              <ul class="mt-5 space-y-3">
+                {item.highlights.map((highlight) => (
+                  <li class="flex items-start gap-3 leading-relaxed text-(--color-text-muted)">
+                    <span
+                      class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-brand)"
+                      aria-hidden="true"
+                    />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div
+      class="mt-10 ml-10 rounded-2xl border border-dashed border-(--color-border) p-5 text-sm leading-relaxed text-(--color-text-muted) md:ml-[14.25rem]"
+    >
+      {content.experience.previous}
+    </div>
+  </section>
+
+  <section
+    class="border-t border-(--color-border) py-20 md:py-28"
+    aria-labelledby="expertise-title"
+  >
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:gap-20">
+      <div class="max-w-3xl">
+        <p class="section-eyebrow">{content.expertise.eyebrow}</p>
+        <h2 id="expertise-title" class="section-title">
+          {content.expertise.title}
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-(--color-text-muted)">
+          {content.expertise.intro}
+        </p>
+      </div>
+
+      <div class="language-panel">
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-(--color-text-muted)">
+          {content.expertise.languagesLabel}
+        </p>
+        <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+          {
+            content.expertise.languages.map((language) => (
+              <li class="language-item text-sm font-semibold text-(--color-text-main)">
+                {language}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="specialty-list mt-14">
+      {
+        content.expertise.specialties.map((specialty, index) => (
+          <details class="specialty-disclosure" name="technical-specialty">
+            <summary class="specialty-summary">
+              <span class="specialty-index" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="specialty-copy">
+                <span class="specialty-title">{specialty.title}</span>
+                <span class="specialty-description">
+                  {specialty.description}
+                </span>
+              </span>
+              <span class="disclosure-control">
+                <span class="disclosure-label disclosure-label-open">
+                  {disclosureLabels.open}
+                </span>
+                <span class="disclosure-label disclosure-label-close">
+                  {disclosureLabels.close}
+                </span>
+                <span class="disclosure-icon" aria-hidden="true"></span>
+              </span>
+            </summary>
+
+            <div class="specialty-details">
+              <ul class="technology-list">
+                {
+                  specialty.technologies.map((technology) => (
+                    <li>
+                      <span aria-hidden="true"></span>
+                      {technology}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    class="border-t border-(--color-border) py-20 md:py-28"
+    aria-labelledby="open-source-title"
+  >
+    <div class="grid gap-12 xl:grid-cols-[minmax(0,1.45fr)_minmax(19rem,0.55fr)]">
+      <div>
+        <p class="section-eyebrow">{content.openSource.eyebrow}</p>
+        <h2 id="open-source-title" class="section-title">
+          {content.openSource.title}
+        </h2>
+        <p
+          class="mt-6 max-w-3xl text-lg leading-relaxed text-(--color-text-muted)"
+        >
+          {content.openSource.intro}
+        </p>
+
+        <dl class="mt-8 grid gap-3 sm:grid-cols-2">
+          {
+            content.openSource.stats.map((stat) => (
+              <div class="flex min-h-28 flex-col-reverse justify-end rounded-2xl border border-(--color-border) bg-(--color-surface) p-5 shadow-sm">
+                <dt class="mt-2 text-sm leading-relaxed text-(--color-text-muted)">
+                  {stat.label}
+                </dt>
+                <dd class="text-2xl font-extrabold tracking-tight text-(--color-text-main)">
+                  {stat.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <div class="mt-10 grid gap-4">
+          {
+            content.openSource.items.map((project, index) => (
+              <article class="interactive-card group grid gap-4 rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 shadow-sm sm:grid-cols-[3rem_1fr] sm:items-start">
+                <span
+                  class="text-sm font-black tracking-[0.18em] text-(--color-brand)"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 class="text-xl font-bold text-(--color-text-main)">
+                    {project.name}
+                  </h3>
+                  <p class="mt-2 leading-relaxed text-(--color-text-muted)">
+                    {project.description}
+                  </p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+
+        <a
+          href={extensionsHref}
+          class="mt-8 inline-flex items-center gap-2 rounded-lg font-bold text-(--color-text-main) hover:text-(--color-brand)"
+        >
+          {content.openSource.cta}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <aside
+        class="principles-panel self-start rounded-3xl border border-(--color-border) p-7 md:p-9 xl:sticky xl:top-24"
+        aria-labelledby="principles-title"
+      >
+        <p class="section-eyebrow">{content.principles.eyebrow}</p>
+        <h2
+          id="principles-title"
+          class="mt-3 text-2xl font-bold leading-tight text-(--color-text-main)"
+        >
+          {content.principles.title}
+        </h2>
+        <ol class="mt-8 space-y-6">
+          {
+            content.principles.items.map((principle, index) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-3 leading-relaxed text-(--color-text-muted)">
+                <span
+                  class="font-black text-(--color-brand)"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>{principle}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section
+    class="border-t border-(--color-border) py-20 md:py-28"
+    aria-labelledby="education-title"
+  >
+    <p class="section-eyebrow">{content.education.eyebrow}</p>
+    <h2 id="education-title" class="section-title">
+      {content.education.title}
+    </h2>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-12">
+      <div class="grid gap-4 lg:col-span-8">
+        {
+          content.education.items.map((item) => (
+            <article class="interactive-card rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 shadow-sm md:p-8">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h3 class="text-lg font-bold leading-snug text-(--color-text-main) md:text-xl">
+                    {item.qualification}
+                  </h3>
+                  <p class="mt-1 font-semibold text-(--color-brand)">
+                    {item.institution}
+                  </p>
+                </div>
+                <div class="shrink-0 sm:text-right">
+                  <p class="text-sm font-semibold text-(--color-text-muted)">
+                    {item.period}
+                  </p>
+                  {
+                    item.highlight && (
+                      <dl class="mt-3 inline-block rounded-xl bg-(--color-surface-muted) px-4 py-3 text-left sm:text-right">
+                        <dt class="text-xs font-bold uppercase tracking-[0.14em] text-(--color-text-muted)">
+                          {item.highlight.label}
+                        </dt>
+                        <dd class="mt-1 text-xl font-extrabold text-(--color-text-main)">
+                          {item.highlight.value}
+                        </dd>
+                      </dl>
+                    )
+                  }
+                </div>
+              </div>
+              <p class="mt-5 leading-relaxed text-(--color-text-muted)">
+                {item.detail}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <aside
+        class="rounded-2xl border border-(--color-border) bg-(--color-surface) p-6 shadow-sm md:p-8 lg:col-span-4"
+      >
+        <p
+          class="text-xs font-bold uppercase tracking-[0.18em] text-(--color-brand)"
+        >
+          {content.education.languagesTitle}
+        </p>
+        <ul class="mt-6 space-y-4">
+          {
+            content.education.languages.map((language) => (
+              <li class="border-b border-(--color-border) pb-4 font-semibold text-(--color-text-main) last:border-0 last:pb-0">
+                {language}
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section
+    class="closing-panel relative overflow-hidden rounded-3xl border border-(--color-border) p-7 shadow-xl shadow-black/5 md:p-12 lg:p-14"
+    aria-labelledby="closing-title"
+  >
+    <span
+      class="absolute -bottom-20 -right-8 select-none text-[14rem] font-black leading-none text-(--color-brand)/6"
+      aria-hidden="true"
+    >
+      →
+    </span>
+    <div class="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+      <div class="max-w-3xl">
+        <p class="section-eyebrow">{content.closing.eyebrow}</p>
+        <h2 id="closing-title" class="section-title">
+          {content.closing.title}
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-(--color-text-muted)">
+          {content.closing.body}
+        </p>
+      </div>
+
+      <div>
+        <p
+          class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-(--color-text-muted)"
+        >
+          {content.closing.linksTitle}
+        </p>
+        <ul class="flex flex-wrap gap-3 lg:max-w-xs lg:justify-end">
+          {
+            socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex rounded-full border border-(--color-border) bg-(--color-surface) px-4 py-2 text-sm font-bold text-(--color-text-main) shadow-sm hover:border-(--color-brand) hover:text-(--color-brand)"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .section-eyebrow {
+    color: var(--color-brand);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    color: var(--color-text-main);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    margin-top: 0.75rem;
+    max-width: 52rem;
+  }
+
+  .profile-card::after {
+    background: var(--color-brand);
+    content: "";
+    height: 4px;
+    inset: auto 2rem 0;
+    position: absolute;
+  }
+
+  .language-panel {
+    border-left: 2px solid var(--color-brand);
+    padding-left: 1.25rem;
+  }
+
+  .language-item {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.45rem;
+  }
+
+  .language-item::before {
+    background: color-mix(
+      in srgb,
+      var(--color-brand) 55%,
+      var(--color-border)
+    );
+    border-radius: 999px;
+    content: "";
+    height: 0.3rem;
+    width: 0.3rem;
+  }
+
+  .specialty-list {
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .specialty-disclosure {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .specialty-disclosure:last-child {
+    border-bottom: 0;
+  }
+
+  .specialty-summary {
+    align-items: start;
+    cursor: pointer;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    list-style: none;
+    padding: 1.75rem 0;
+  }
+
+  .specialty-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .specialty-summary:focus-visible {
+    box-shadow: inset 2px 0 0 var(--color-brand);
+    outline: none;
+  }
+
+  .specialty-index {
+    color: var(--color-brand);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    padding-top: 0.35rem;
+  }
+
+  .specialty-copy {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .specialty-title {
+    color: var(--color-text-main);
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+  }
+
+  .specialty-description {
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    max-width: 47rem;
+  }
+
+  .disclosure-control {
+    align-items: center;
+    color: var(--color-text-muted);
+    display: inline-flex;
+    font-size: 0.75rem;
+    font-weight: 800;
+    gap: 0.8rem;
+    letter-spacing: 0.08em;
+    padding-top: 0.2rem;
+    text-transform: uppercase;
+  }
+
+  .disclosure-icon {
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    height: 2rem;
+    position: relative;
+    transition:
+      border-color 180ms ease,
+      transform 180ms ease;
+    width: 2rem;
+  }
+
+  .disclosure-icon::before,
+  .disclosure-icon::after {
+    background: currentColor;
+    content: "";
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 180ms ease;
+    width: 0.7rem;
+  }
+
+  .disclosure-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .specialty-disclosure[open] .disclosure-icon {
+    border-color: color-mix(
+      in srgb,
+      var(--color-brand) 55%,
+      var(--color-border)
+    );
+    color: var(--color-brand);
+    transform: rotate(180deg);
+  }
+
+  .specialty-disclosure[open] .disclosure-icon::after {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+
+  .disclosure-label-close {
+    display: none;
+  }
+
+  .specialty-disclosure[open] .disclosure-label-open {
+    display: none;
+  }
+
+  .specialty-disclosure[open] .disclosure-label-close {
+    display: inline;
+  }
+
+  .specialty-details {
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-border) 70%, transparent);
+    margin-left: 3.5rem;
+    padding: 1.5rem 0 2rem;
+  }
+
+  .technology-list {
+    display: grid;
+    gap: 0.8rem 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 52rem;
+  }
+
+  .technology-list li {
+    align-items: center;
+    color: var(--color-text-muted);
+    display: flex;
+    font-size: 0.925rem;
+    gap: 0.65rem;
+  }
+
+  .technology-list li > span {
+    background: var(--color-brand);
+    border-radius: 999px;
+    height: 0.3rem;
+    opacity: 0.75;
+    width: 0.3rem;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    min-height: 10rem;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    background: var(--color-border);
+    bottom: 1.5rem;
+    content: "";
+    left: 0.45rem;
+    position: absolute;
+    top: 1.5rem;
+    width: 1px;
+  }
+
+  .timeline-item {
+    padding-left: 2.5rem;
+    position: relative;
+  }
+
+  .timeline-marker {
+    background: var(--color-bg);
+    border: 3px solid var(--color-brand);
+    border-radius: 999px;
+    height: 1rem;
+    left: 0;
+    position: absolute;
+    top: 1.5rem;
+    width: 1rem;
+    z-index: 1;
+  }
+
+  .timeline-period {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .principles-panel,
+  .closing-panel {
+    background:
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--color-brand) 13%, transparent),
+        transparent 45%
+      ),
+      var(--color-surface);
+  }
+
+  @media (min-width: 48rem) {
+    .timeline {
+      gap: 2rem;
+    }
+
+    .timeline::before {
+      left: 12.25rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      gap: 4rem;
+      grid-template-columns: 10.5rem minmax(0, 1fr);
+      padding-left: 0;
+    }
+
+    .timeline-marker {
+      left: 11.8rem;
+    }
+
+    .timeline-period {
+      margin-bottom: 0;
+      padding-top: 1.35rem;
+      text-align: right;
+    }
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .interactive-card:hover,
+    .metric-card:hover {
+      border-color: color-mix(
+        in srgb,
+        var(--color-brand) 55%,
+        var(--color-border)
+      );
+      box-shadow: 0 1rem 2.25rem rgb(0 0 0 / 0.07);
+      transform: translateY(-4px);
+    }
+
+    .specialty-summary:hover .specialty-title,
+    .specialty-summary:hover .disclosure-control {
+      color: var(--color-brand);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: about-rise 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes about-rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .specialty-disclosure[open] .specialty-details {
+      animation: specialty-reveal 220ms ease-out both;
+    }
+
+    @keyframes specialty-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(-0.35rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-page *,
+    .about-page *::before,
+    .about-page *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+
+  }
+
+  @media (max-width: 47.99rem) {
+    .language-panel {
+      border-left: 0;
+      border-top: 1px solid var(--color-border);
+      padding-left: 0;
+      padding-top: 1.25rem;
+    }
+
+    .specialty-summary {
+      grid-template-columns: 2rem minmax(0, 1fr) auto;
+      padding: 1.4rem 0;
+    }
+
+    .disclosure-label {
+      display: none !important;
+    }
+
+    .specialty-details {
+      margin-left: 3rem;
+      padding-top: 1.25rem;
+    }
+
+    .technology-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
